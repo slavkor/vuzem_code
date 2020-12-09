@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EwrFragmentData"
+    android:id="@+id/ewrfragmentdata"
+    android:background="@color/colorPrimary">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_view_boat1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Auftraggeber"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"/>
+            <EditText
+                android:id="@+id/entry"
+                android:hint="Auftraggeber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/editbox_background"
+                android:layout_toRightOf="@+id/text_view_boat1"
+                android:layout_alignParentTop="true"/>
+            <TextView
+                android:id="@+id/text_view_boat2"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Kunde"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/text_view_boat1"/>
+            <EditText
+                android:id="@+id/entry2"
+                android:hint="Kunde"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/editbox_background"
+                android:layout_toRightOf="@+id/text_view_boat2"
+                android:layout_below="@id/entry"/>
+        </RelativeLayout>
+
+        <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Auftraggeber"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Kunde"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Projektleiter"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Bauleiter AG"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Bauleiter AN"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Vorarbeiter AN"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Projektnummer"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Halle / Achse"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Datum"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="KW"/>
+
+            <EditText
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Blat"/>
+
+            <EditText
+                android:inputType="text|textMultiLine"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:hint="Bescheribung"/>
+
+        </LinearLayout>
+-->
+
+    </ScrollView>
+
+</FrameLayout>

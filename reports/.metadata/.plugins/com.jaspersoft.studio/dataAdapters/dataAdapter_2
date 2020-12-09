@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><webServiceDataAdapter class="com.jaspersoft.webservice.data.WebServiceDataAdapterImpl"><name>ISM</name><wsUri>http://</wsUri><authType>none</authType><verb>get</verb><language xmlns:java="http://java.sun.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="java:java.lang.String">jsonql</language></webServiceDataAdapter>

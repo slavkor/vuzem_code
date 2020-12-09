@@ -1,0 +1,259 @@
+﻿<UserControl x:Class="Ism.Employees.Views.EmployeesList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:local="clr-namespace:Ism.Employees.Views"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converter="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/Grid.xaml"></ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="telerik:GridViewSearchPanel" BasedOn="{StaticResource GW}">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Height" Value="50"></Setter>
+            </Style>
+            <converter:GridItemIndexConverter x:Key="ItemInexconverter"></converter:GridItemIndexConverter>
+            
+
+        </ResourceDictionary>
+    </UserControl.Resources>    
+    <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <telerik:RadTabControl Name="tab">
+            <telerik:RadTabItem Header="Vsi"  Tag="0">
+                <telerik:RadGridView  CanUserSearchInHiddenColumns ="True"
+                              ItemsSource="{Binding Employees}"  
+                              AutoGenerateColumns="False"                               
+                              ShowSearchPanel="True" 
+                              x:Name="list" 
+                              SelectedItem="{Binding SelectedEmployee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              ShowGroupPanel="False" 
+                              ShowColumnFooters="True">
+
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource self}, Path=DataContext.WorkPeriod.Active}" Value="0">
+                                    <Setter Property="Background" Value="Salmon"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:RadGridView.RowStyle>
+
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Delo"  DataMemberBinding="{Binding Employee.WorkPlace.WorkPlaceName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Priimek"  DataMemberBinding="{Binding Employee.LastName}" IsReadOnly="True" >
+                            <telerik:GridViewDataColumn.AggregateFunctions>
+                                <telerik:CountFunction Caption="Število zaposlenih: " />
+                            </telerik:GridViewDataColumn.AggregateFunctions>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Ime"  DataMemberBinding="{Binding Employee.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen"  DataMemberBinding="{Binding Employee.BirthDay}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen v"  DataMemberBinding="{Binding Employee.BirthPlace}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Emšo"  DataMemberBinding="{Binding Employee.Emso}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Davčna"  DataMemberBinding="{Binding Employee.TaxNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Št. zavarovanja" DataMemberBinding="{Binding Employee.InsuranceNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <!--<telerik:GridViewDataColumn Header="Delodajalec"  DataMemberBinding="{Binding Company.ShortName}" IsReadOnly="True" ></telerik:GridViewDataColumn>-->
+                        <telerik:GridViewDataColumn Header="Datum prijave"  DataMemberBinding="{Binding WorkPeriod.Start}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Datum odjave"  DataMemberBinding="{Binding WorkPeriod.End}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Trenutni projekt"  DataMemberBinding="{Binding Project.PointName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Varilski certifikati"  DataMemberBinding="{Binding WedlerCerts}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+
+                        
+                    </telerik:RadGridView.Columns>
+                    <telerik:EventToCommandBehavior.EventBindings>
+                        <telerik:EventBinding  Command="{Binding DoubleClickCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+                    </telerik:EventToCommandBehavior.EventBindings>
+                </telerik:RadGridView>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="Zaposleni"  Tag="1">
+                <telerik:RadGridView  CanUserSearchInHiddenColumns ="True"
+                              ItemsSource="{Binding Employees}"  
+                              AutoGenerateColumns="False"                               
+                              ShowSearchPanel="True" 
+                              x:Name="emplist" 
+                              SelectedItem="{Binding SelectedEmployee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              ShowGroupPanel="False" 
+                              ShowColumnFooters="True">
+
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource self}, Path=DataContext.WorkPeriod.Active}" Value="0">
+                                    <Setter Property="Background" Value="Salmon"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:RadGridView.RowStyle>
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Delo"  DataMemberBinding="{Binding Employee.WorkPlace.WorkPlaceName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Priimek"  DataMemberBinding="{Binding Employee.LastName}" IsReadOnly="True" >
+                            <telerik:GridViewDataColumn.AggregateFunctions>
+                                <telerik:CountFunction Caption="Število zaposlenih: " />
+                            </telerik:GridViewDataColumn.AggregateFunctions>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Ime"  DataMemberBinding="{Binding Employee.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen"  DataMemberBinding="{Binding Employee.BirthDay}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen v"  DataMemberBinding="{Binding Employee.BirthPlace}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Emšo"  DataMemberBinding="{Binding Employee.Emso}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Davčna"  DataMemberBinding="{Binding Employee.TaxNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Št. zavarovanja" DataMemberBinding="{Binding Employee.InsuranceNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <!--<telerik:GridViewDataColumn Header="Delodajalec"  DataMemberBinding="{Binding Company.ShortName}" IsReadOnly="True" ></telerik:GridViewDataColumn>-->
+                        <telerik:GridViewDataColumn Header="Datum prijave"  DataMemberBinding="{Binding WorkPeriod.Start}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Datum odjave"  DataMemberBinding="{Binding WorkPeriod.End}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Trenutni projekt"  DataMemberBinding="{Binding Project.PointName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    </telerik:RadGridView.Columns>
+                    <telerik:EventToCommandBehavior.EventBindings>
+                        <telerik:EventBinding  Command="{Binding DoubleClickCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=emplist, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+                    </telerik:EventToCommandBehavior.EventBindings>
+                </telerik:RadGridView>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="Izposojeni"  Tag="2">
+                <telerik:RadGridView  CanUserSearchInHiddenColumns ="True"
+                              ItemsSource="{Binding Employees}"  
+                              AutoGenerateColumns="False"                               
+                              ShowSearchPanel="True" 
+                              x:Name="loanlist" 
+                              SelectedItem="{Binding SelectedEmployee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              ShowGroupPanel="False" 
+                              ShowColumnFooters="True">
+
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource self}, Path=DataContext.WorkPeriod.Active}" Value="0">
+                                    <Setter Property="Background" Value="Salmon"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:RadGridView.RowStyle>
+       
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Delo"  DataMemberBinding="{Binding Employee.WorkPlace.WorkPlaceName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Priimek"  DataMemberBinding="{Binding Employee.LastName}" IsReadOnly="True" >
+                            <telerik:GridViewDataColumn.AggregateFunctions>
+                                <telerik:CountFunction Caption="Število zaposlenih: " />
+                            </telerik:GridViewDataColumn.AggregateFunctions>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Ime"  DataMemberBinding="{Binding Employee.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen"  DataMemberBinding="{Binding Employee.BirthDay}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen v"  DataMemberBinding="{Binding Employee.BirthPlace}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Emšo"  DataMemberBinding="{Binding Employee.Emso}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Davčna"  DataMemberBinding="{Binding Employee.TaxNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Št. zavarovanja" DataMemberBinding="{Binding Employee.InsuranceNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <!--<telerik:GridViewDataColumn Header="Delodajalec"  DataMemberBinding="{Binding Company.ShortName}" IsReadOnly="True" ></telerik:GridViewDataColumn>-->
+                        <telerik:GridViewDataColumn Header="Datum prijave"  DataMemberBinding="{Binding WorkPeriod.Start}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Datum odjave"  DataMemberBinding="{Binding WorkPeriod.End}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Trenutni projekt"  DataMemberBinding="{Binding Project.PointName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    </telerik:RadGridView.Columns>
+                    <telerik:EventToCommandBehavior.EventBindings>
+                        <telerik:EventBinding  Command="{Binding DoubleClickCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=loanlist, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+                    </telerik:EventToCommandBehavior.EventBindings>
+                </telerik:RadGridView>
+            </telerik:RadTabItem>            
+            <telerik:RadTabItem Header="Po gradbiščih" Tag="3">
+                <telerik:RadGridView  CanUserSearchInHiddenColumns ="True"
+                              ItemsSource="{Binding EmployeesAway}"  
+                              AutoGenerateColumns="False"                               
+                              ShowSearchPanel="True" 
+                              x:Name="alist"
+                              ShowGroupPanel="False" 
+                              ShowColumnFooters="True">
+
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource self}, Path=DataContext.WorkPeriod.Active}" Value="0">
+                                    <Setter Property="Background" Value="Salmon"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:RadGridView.RowStyle>
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Priimek"  DataMemberBinding="{Binding LastName}" IsReadOnly="True" >
+                            <telerik:GridViewDataColumn.AggregateFunctions>
+                                <telerik:CountFunction Caption="Število zaposlenih: " />
+                            </telerik:GridViewDataColumn.AggregateFunctions>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Ime"  DataMemberBinding="{Binding Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen"  DataMemberBinding="{Binding BirthDay}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen v"  DataMemberBinding="{Binding BirthPlace}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Emšo"  DataMemberBinding="{Binding Emso}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Davčna"  DataMemberBinding="{Binding TaxNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Št. zavarovanja" DataMemberBinding="{Binding InsuranceNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Trenutni projekt"  DataMemberBinding="{Binding CurrentOccupancy.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="število dni"  DataMemberBinding="{Binding CurrentOccupancy.TotalDays}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    </telerik:RadGridView.Columns>
+                    <telerik:EventToCommandBehavior.EventBindings>
+                        <telerik:EventBinding  Command="{Binding DoubleClickCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+                    </telerik:EventToCommandBehavior.EventBindings>
+                </telerik:RadGridView>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="Doma" Tag="4">
+                <telerik:RadGridView  CanUserSearchInHiddenColumns ="True"
+                              ItemsSource="{Binding EmployeesHome}"  
+                              AutoGenerateColumns="False"                               
+                              ShowSearchPanel="True" 
+                              x:Name="hlist"
+                              ShowGroupPanel="False" 
+                              ShowColumnFooters="True">
+
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="telerik:GridViewRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource self}, Path=DataContext.WorkPeriod.Active}" Value="0">
+                                    <Setter Property="Background" Value="Salmon"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </telerik:RadGridView.RowStyle>
+
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Priimek"  DataMemberBinding="{Binding LastName}" IsReadOnly="True" >
+                            <telerik:GridViewDataColumn.AggregateFunctions>
+                                <telerik:CountFunction Caption="Število zaposlenih: " />
+                            </telerik:GridViewDataColumn.AggregateFunctions>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Ime"  DataMemberBinding="{Binding Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen"  DataMemberBinding="{Binding BirthDay}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Rojen v"  DataMemberBinding="{Binding BirthPlace}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Emšo"  DataMemberBinding="{Binding Emso}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Davčna"  DataMemberBinding="{Binding TaxNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Št. zavarovanja" DataMemberBinding="{Binding InsuranceNumber}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Trenutni projekt"  DataMemberBinding="{Binding CurrentOccupancy.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="število dni"  DataMemberBinding="{Binding CurrentOccupancy.TotalDays}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                        
+                    </telerik:RadGridView.Columns>
+                    <telerik:EventToCommandBehavior.EventBindings>
+                        <telerik:EventBinding  Command="{Binding DoubleClickCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+                    </telerik:EventToCommandBehavior.EventBindings>
+                </telerik:RadGridView>
+            </telerik:RadTabItem>            
+            <telerik:EventToCommandBehavior.EventBindings>
+
+                <telerik:EventBinding  Command="{Binding TabSelectionChangedCommand}" EventName="SelectionChanged" CommandParameter="{Binding ElementName=tab, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+
+            </telerik:EventToCommandBehavior.EventBindings>
+        </telerik:RadTabControl>
+    </Grid>
+</UserControl>

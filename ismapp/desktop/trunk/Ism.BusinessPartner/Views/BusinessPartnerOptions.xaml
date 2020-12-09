@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Ism.BusinessPartners.Views.BusinessPartnerOptions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.BusinessPartners.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Style="{StaticResource ResourceKey=UcStyle}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid >
+        <i:Interaction.Triggers>
+            <prism:InteractionRequestTrigger SourceObject="{Binding BusinessPartnerEditRequest, Mode=OneWay}">
+                <prism:PopupWindowAction IsModal="True" WindowStartupLocation="CenterOwner" WindowStyle="{StaticResource CustomWindowStyle  }" >
+                    <prism:PopupWindowAction.WindowContent>
+                        <local:BusinessPartnerEdit/>
+                    </prism:PopupWindowAction.WindowContent>
+                </prism:PopupWindowAction>
+            </prism:InteractionRequestTrigger>
+        </i:Interaction.Triggers>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Button DockPanel.Dock="Left" Content="Seznam" Command="{Binding BusinessPartnerListCommand}"></Button>
+            <Button DockPanel.Dock="Left" Content="Nov poslovni partner" Command="{Binding BusinessPartnerEditCommand}" CommandParameter="{x:Null}"></Button>
+            <Button DockPanel.Dock="Left" Content="Urejanje partnerja" Command="{Binding BusinessPartnerEditCommand}" CommandParameter="{Binding CurrentBusinessPartner}"></Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dep_name_list_001" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="814" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" resourceBundle="dep_name_list_001" uuid="27588a55-9568-4375-bc09-e07956979fc4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="net.sf.jasperreports.data.adapter" value="ISM.xml"/>
+	<property name="ireport.jasperserver.url" value="http://api.ismvuzem.si:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/ISM/dep_name_list_001"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/ISM/dep_name_list_001_files/main_jrxml"/>
+	<subDataset name="emps" uuid="d910fce5-6f99-43c4-96ad-105b44df58cc">
+		<queryString language="WebServiceQuery">
+			<![CDATA[{
+  "getparameters" : {
+    "origin" : "",
+    "destination" : ""
+  },
+  "fields" : [ {
+    "name" : "name",
+    "expression" : "name"
+  }, {
+    "name" : "lastname",
+    "expression" : "lastname"
+  }, {
+    "name" : "birthday",
+    "expression" : "birthday"
+  }, {
+    "name" : "birthplace",
+    "expression" : "birthplace"
+  }, {
+    "name" : "nationality",
+    "expression" : "nationality"
+  }, {
+    "name" : "documentnumber",
+    "expression" : "document.documentnumber"
+  }, {
+    "name" : "line1",
+    "expression" : "address.line1"
+  }, {
+    "name" : "line2",
+    "expression" : "address.line2"
+  }, {
+    "name" : "zip",
+    "expression" : "address.zip"
+  }, {
+    "name" : "city",
+    "expression" : "address.city"
+  } ],
+  "options" : {
+    "contentType" : "application/maps",
+    "rootPath" : "departure.employees",
+    "baseUrl" : ""
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : {
+    "origin" : "",
+    "destination" : ""
+  }
+}]]>
+		</queryString>
+		<field name="name" class="java.lang.String"/>
+		<field name="lastname" class="java.lang.String"/>
+		<field name="birthday" class="java.lang.String"/>
+		<field name="birthplace" class="java.lang.String"/>
+		<field name="nationality" class="java.lang.String"/>
+		<field name="documentnumber" class="java.lang.String"/>
+		<field name="line1" class="java.lang.String"/>
+		<field name="line2" class="java.lang.String"/>
+		<field name="zip" class="java.lang.String"/>
+		<field name="city" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="empmap" class="java.util.Map">
+		<defaultValueExpression><![CDATA[[    "name" : "name",
+    "lastname" : "lastname",
+    "birthday" : "birthday",
+    "birthplace" : "birthplace",
+    "nationality" : "nationality",
+    "documentnumber" : "document.documentnumber",
+    "line1" : "address.line1",
+    "line2" : "address.line2",
+    "zip" : "address.zip",
+    "city" : "address.city",
+    "job" : "job"]]]></defaultValueExpression>
+	</parameter>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="hdr" class="java.lang.String"/>
+	<parameter name="departureId" class="java.lang.String"/>
+	<parameter name="reportid" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "sitename",
+    "expression" : "to.site.name"
+  }, {
+    "name" : "projname",
+    "expression" : "to.name"
+  }, {
+    "name" : "departtime",
+    "expression" : "departtime"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "departure",
+    "baseUrl" : "$P{url}/rpt/departure/$P{departureId}/get?token=$P{token}"
+  },
+  "headersMap" : {
+    "reportid" : "$P{reportid}"
+  },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="sitename" class="java.lang.String"/>
+	<field name="projname" class="java.lang.String"/>
+	<field name="departtime" class="java.lang.String"/>
+	<pageHeader>
+		<band height="17"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<textField>
+				<reportElement x="0" y="0" width="131" height="22" uuid="ac93c8f8-2773-4206-bcbb-90baa2714a64">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{namelist}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="131" y="0" width="159" height="22" uuid="5627b30d-733d-4e9d-8c5c-ff5a5e6b3757">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sitename}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="290" y="0" width="160" height="22" uuid="3df01c78-3c17-428f-88c1-f25e2625b943">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{projname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="100" height="22" uuid="988adff0-e55c-4f60-a978-56449d9eb897">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[DATEFORMAT(DATE(INTEGER_VALUE( LEFT($F{departtime},4)),INTEGER_VALUE( MID($F{departtime},5,2)),INTEGER_VALUE( MID($F{departtime},7,2))),"dd.MM.yyyy")]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="45">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<subreport isUsingCache="true" runToBottom="true">
+				<reportElement x="-14" y="0" width="842" height="14" uuid="5a9c5617-d44c-4fff-894b-e8578f84f068"/>
+				<dataSourceExpression><![CDATA[((com.jaspersoft.webservice.data.query.IWSDataSource)$P{REPORT_DATA_SOURCE}).clone("departure.employees", $P{empmap})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["departure/dep_name_list_subemps_001.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="-14" y="31" width="842" height="2" uuid="67be95b9-2126-4e68-970d-06bde902f6ee">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportParameter name="departure">
+					<subreportParameterExpression><![CDATA[$P{departureId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA["departure/dep_name_list_contacts_001.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="14" width="810" height="17" backcolor="#E6E6E6" uuid="30d6344f-8810-4e1f-973d-de8eb7ad5bb7">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KONTAKTI]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

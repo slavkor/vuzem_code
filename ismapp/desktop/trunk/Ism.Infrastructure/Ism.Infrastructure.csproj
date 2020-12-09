@@ -1,0 +1,800 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4AB7808-1FBB-43E9-8C62-24E5329EA0A1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ism.Infrastructure</RootNamespace>
+    <AssemblyName>Ism.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net, Version=0.1.5073.29922, Culture=neutral, PublicKeyToken=6bcd409ee6bc9292, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt-Official.0.1.109\lib\BCrypt.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Itenso.TimePeriod, Version=2.1.1.0, Culture=neutral, PublicKeyToken=8cb6db75b4e81486, processorArchitecture=MSIL">
+      <HintPath>..\packages\TimePeriodLibrary.NET.2.1.1\lib\net45\Itenso.TimePeriod.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.0.362, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.5.5.0\lib\net451\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.5.5.0\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.5.0\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter, Version=3.1.1.0, Culture=neutral, PublicKeyToken=c7694541b0ac80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ValueInjecter.3.1.1.5\lib\net40\Omu.ValueInjecter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Unity.6.3.0\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.5.0\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GanttView">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.GanttView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView.Export">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.GridView.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Scheduling.Core">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Scheduling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppCommands.cs" />
+    <Compile Include="Behaviors\DragDropBehavior.cs" />
+    <Compile Include="Behaviors\PasswordBoxBindingBehavior.cs" />
+    <Compile Include="Behaviors\RadGridViewMultiSelectBehavior.cs" />
+    <Compile Include="ConstructionStieState.cs" />
+    <Compile Include="Converters\AbsenceTypeToIntConverter.cs" />
+    <Compile Include="Converters\ColorConverter.cs" />
+    <Compile Include="Converters\DateConverter.cs" />
+    <Compile Include="Converters\DayModelToDateTimeConverter.cs" />
+    <Compile Include="Converters\GridItemIndexConverter.cs" />
+    <Compile Include="Converters\Multiconverter.cs" />
+    <Compile Include="Converters\PasswordToCryptConverter.cs" />
+    <Compile Include="Converters\RangeSliderConverter.cs" />
+    <Compile Include="Converters\SecurityScopeToVisibilityConverter.cs" />
+    <Compile Include="Converters\SolidColorBrushConverter.cs" />
+    <Compile Include="Converters\TimelinePeriodConverter.cs" />
+    <Compile Include="EditMode.cs" />
+    <Compile Include="Converters\EventLengthConverter.cs" />
+    <Compile Include="Events\PrintEvent.cs" />
+    <Compile Include="Events\PrintEventAgrs.cs" />
+    <Compile Include="Events\SelectedEvent.cs" />
+    <Compile Include="Events\SelectedEventArgs.cs" />
+    <Compile Include="Events\SettingsEvent.cs" />
+    <Compile Include="Events\BusyEvent.cs" />
+    <Compile Include="Events\BusyEventArgs.cs" />
+    <Compile Include="Events\CompanySelectedEvent.cs" />
+    <Compile Include="Events\ConfirmSaveEvent.cs" />
+    <Compile Include="Events\ConfirmSaveEventArgs.cs" />
+    <Compile Include="Events\ConstructionSiteListEventArgs.cs" />
+    <Compile Include="Events\EditChildEvent.cs" />
+    <Compile Include="Events\EditChildEventArgs.cs" />
+    <Compile Include="Events\EditEvent.cs" />
+    <Compile Include="Events\EditEventArgs.cs" />
+    <Compile Include="Events\EmployeeAdded.cs" />
+    <Compile Include="Events\EmployeeEdited.cs" />
+    <Compile Include="Events\EmployeeSelected.cs" />
+    <Compile Include="Events\ListEvent.cs" />
+    <Compile Include="Events\ListEventArgs.cs" />
+    <Compile Include="Events\LoginEvent.cs" />
+    <Compile Include="Events\LogoutEvent.cs" />
+    <Compile Include="Events\RaiseException.cs" />
+    <Compile Include="Events\ReportEvent.cs" />
+    <Compile Include="Events\ReportEventArgs.cs" />
+    <Compile Include="Events\SelectBusinessPartnerEvent.cs" />
+    <Compile Include="Events\SelectBusinessPartnerEventArgs.cs" />
+    <Compile Include="Extensions\CalendarExtensions.cs" />
+    <Compile Include="Extensions\DateTimeDayOfMonthExtensions.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="IAppCommands.cs" />
+    <Compile Include="Interaction\EditChidlInteraction.cs" />
+    <Compile Include="Interaction\EditDetailInteraction.cs" />
+    <Compile Include="Interaction\EditDetailInteractionEnum.cs" />
+    <Compile Include="Interaction\EditInteraction.cs" />
+    <Compile Include="Interaction\IInteraction.cs" />
+    <Compile Include="Interaction\INavigationInteraction.cs" />
+    <Compile Include="Interaction\ListInteraction.cs" />
+    <Compile Include="Interaction\ListInteractionEx.cs" />
+    <Compile Include="Interaction\NavigationChildInteraction.cs" />
+    <Compile Include="Interaction\NavigationInteraction.cs" />
+    <Compile Include="Interaction\ReportInteraction.cs" />
+    <Compile Include="IWindow.cs" />
+    <Compile Include="ListViewNotification.cs" />
+    <Compile Include="Model\Absence.cs" />
+    <Compile Include="Model\AbsenceType.cs" />
+    <Compile Include="Model\AddChild.cs" />
+    <Compile Include="Model\AddContact.cs" />
+    <Compile Include="Model\AddDocument.cs" />
+    <Compile Include="Model\AddOccupancy.cs" />
+    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\AddressType.cs" />
+    <Compile Include="Model\ApiServerException.cs" />
+    <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\BusinessPartner.cs" />
+    <Compile Include="Model\Car.cs" />
+    <Compile Include="Model\CarList.cs" />
+    <Compile Include="Model\CarListItem.cs" />
+    <Compile Include="Model\Company.cs" />
+    <Compile Include="Model\ConstructionSite.cs" />
+    <Compile Include="Model\ConstructionSiteList.cs" />
+    <Compile Include="Model\ConstructionSiteOverview.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\CurrentWorkPeriod.cs" />
+    <Compile Include="Model\DateTimeConverter.cs" />
+    <Compile Include="Model\AddAddress.cs" />
+    <Compile Include="Model\Day.cs" />
+    <Compile Include="Model\Departure.cs" />
+    <Compile Include="Model\DepartureBase.cs" />
+    <Compile Include="Model\DepartureOverview.cs" />
+    <Compile Include="Model\DocumentPrint.cs" />
+    <Compile Include="Model\DepartureEx.cs" />
+    <Compile Include="Model\DepartureList.cs" />
+    <Compile Include="Model\DocumentType.cs" />
+    <Compile Include="Model\EmployeeChangeEmployer.cs" />
+    <Compile Include="Model\EmployeeDepature.cs" />
+    <Compile Include="Model\EmployeeDocumentToExpire.cs" />
+    <Compile Include="Model\EmployeeEx.cs" />
+    <Compile Include="Model\EmployeeFire.cs" />
+    <Compile Include="Model\EmployeeHire.cs" />
+    <Compile Include="Model\EmployeeList.cs" />
+    <Compile Include="Model\EmployeeListItem.cs" />
+    <Compile Include="Model\EmployeeOverview.cs" />
+    <Compile Include="Model\EmployeeShift.cs" />
+    <Compile Include="Model\EmployeeWorkPeriod.cs" />
+    <Compile Include="Model\Ewr.cs" />
+    <Compile Include="Model\EwrWorker.cs" />
+    <Compile Include="Model\File.cs" />
+    <Compile Include="Model\FileExtension.cs" />
+    <Compile Include="Model\ForemanConstructionSite.cs" />
+    <Compile Include="Model\GridSearch.cs" />
+    <Compile Include="Model\HireHistory.cs" />
+    <Compile Include="Model\IBaseModel.cs" />
+    <Compile Include="Model\IDepartureArrival.cs" />
+    <Compile Include="Model\ISelectionAware.cs" />
+    <Compile Include="Model\Language.cs" />
+    <Compile Include="Model\LanguageList.cs" />
+    <Compile Include="Model\ListAddress.cs" />
+    <Compile Include="Model\MartialStatus.cs" />
+    <Compile Include="Model\Month.cs" />
+    <Compile Include="Model\Occupancy.cs" />
+    <Compile Include="Model\OccupancyEx.cs" />
+    <Compile Include="Model\PrintServer.cs" />
+    <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\ProjectDateInfo.cs" />
+    <Compile Include="Model\ProjectWorkPeriod.cs" />
+    <Compile Include="Model\PropertyComparer.cs" />
+    <Compile Include="Model\Range.cs" />
+    <Compile Include="Model\Report.cs" />
+    <Compile Include="Model\Settings.cs" />
+    <Compile Include="Model\Shift.cs" />
+    <Compile Include="Model\ShiftDay.cs" />
+    <Compile Include="Model\ShiftsInternal.cs" />
+    <Compile Include="Model\SpokenLanguage.cs" />
+    <Compile Include="Model\UnixTimestampJsonConverter.cs" />
+    <Compile Include="Model\UserCredentials.cs" />
+    <Compile Include="Model\Contact.cs" />
+    <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\Scope.cs" />
+    <Compile Include="Model\Token.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UuidEqualityComparer.cs" />
+    <Compile Include="Model\WokForceStat.cs" />
+    <Compile Include="Model\WorkHistory.cs" />
+    <Compile Include="Model\WorkPlan.cs" />
+    <Compile Include="Model\WorkPeriod.cs" />
+    <Compile Include="Model\WorkPlace.cs" />
+    <Compile Include="Model\Year.cs" />
+    <Compile Include="Mvvm\ViewModelBase.cs" />
+    <Compile Include="ProjectState.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegionNames.cs" />
+    <Compile Include="Repository\IRestRepository.cs" />
+    <Compile Include="Resources\WindowStyle.xaml.cs">
+      <DependentUpon>WindowStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ExceptionService.cs" />
+    <Compile Include="Services\ICommonService.cs" />
+    <Compile Include="Services\IDepartureService.cs" />
+    <Compile Include="Services\IDocumentService.cs" />
+    <Compile Include="Services\IEmployeeService.cs" />
+    <Compile Include="Services\IExceptionService.cs" />
+    <Compile Include="Services\ISecurityService.cs" />
+    <Compile Include="Services\ISettingsService.cs" />
+    <Compile Include="Converters\EnumBooleanConverter.cs" />
+    <Compile Include="Ui\CompabyBackgroundColorSelector.cs" />
+    <Compile Include="Ui\DepartureCarListItemSelector.cs" />
+    <Compile Include="Ui\DepartureEmployeeListItemTemplateSelector.cs" />
+    <Compile Include="Ui\NewLineRowIndexGenerator.cs" />
+    <Compile Include="Ui\OriginDepartureTemplateSelector.cs" />
+    <Compile Include="Ui\ShiftCalendarTemplateSelector.cs" />
+    <Compile Include="Ui\DepartureTemplateSelector.cs" />
+    <Compile Include="Ui\FocusAdvancement.cs" />
+    <Compile Include="Validation\BindableValidator.cs" />
+    <Compile Include="Validation\IDirty.cs" />
+    <Compile Include="Validation\IValidatableBindableBase.cs" />
+    <Compile Include="Validation\Services.cs" />
+    <Compile Include="Validation\Unique.cs" />
+    <Compile Include="Validation\ValidatableBindableBase.cs" />
+    <Compile Include="Converters\ValidToBooleanConverter.cs" />
+    <Compile Include="WindowAware.cs" />
+    <Compile Include="WindowAwareConfirmation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\BaseButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\BaseStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\BaseTextBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\BaseToogleButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ConstructionSites.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Departures.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Grid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\InheritedStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UcStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\png\add-1.png" />
+    <Resource Include="Icons\png\add-2.png" />
+    <Resource Include="Icons\png\add-3.png" />
+    <Resource Include="Icons\png\add.png" />
+    <Resource Include="Icons\png\agenda.png" />
+    <Resource Include="Icons\png\alarm-1.png" />
+    <Resource Include="Icons\png\alarm-clock-1.png" />
+    <Resource Include="Icons\png\alarm-clock.png" />
+    <Resource Include="Icons\png\alarm.png" />
+    <Resource Include="Icons\png\albums.png" />
+    <Resource Include="Icons\png\app.png" />
+    <Resource Include="Icons\png\archive-1.png" />
+    <Resource Include="Icons\png\archive-2.png" />
+    <Resource Include="Icons\png\archive-3.png" />
+    <Resource Include="Icons\png\archive.png" />
+    <Resource Include="Icons\png\attachment.png" />
+    <Resource Include="Icons\png\back.png" />
+    <Resource Include="Icons\png\battery-1.png" />
+    <Resource Include="Icons\png\battery-2.png" />
+    <Resource Include="Icons\png\battery-3.png" />
+    <Resource Include="Icons\png\battery-4.png" />
+    <Resource Include="Icons\png\battery-5.png" />
+    <Resource Include="Icons\png\battery-6.png" />
+    <Resource Include="Icons\png\battery-7.png" />
+    <Resource Include="Icons\png\battery-8.png" />
+    <Resource Include="Icons\png\battery-9.png" />
+    <Resource Include="Icons\png\battery.png" />
+    <Resource Include="Icons\png\binoculars.png" />
+    <Resource Include="Icons\png\blueprint.png" />
+    <Resource Include="Icons\png\bluetooth-1.png" />
+    <Resource Include="Icons\png\bluetooth.png" />
+    <Resource Include="Icons\png\bookmark-1.png" />
+    <Resource Include="Icons\png\bookmark.png" />
+    <Resource Include="Icons\png\briefcase.png" />
+    <Resource Include="Icons\png\broken-link.png" />
+    <Resource Include="Icons\png\calculator-1.png" />
+    <Resource Include="Icons\png\calculator.png" />
+    <Resource Include="Icons\png\calendar-1.png" />
+    <Resource Include="Icons\png\calendar-2.png" />
+    <Resource Include="Icons\png\calendar-3.png" />
+    <Resource Include="Icons\png\calendar-4.png" />
+    <Resource Include="Icons\png\calendar-5.png" />
+    <Resource Include="Icons\png\calendar-6.png" />
+    <Resource Include="Icons\png\calendar-7.png" />
+    <Resource Include="Icons\png\calendar.png" />
+    <Resource Include="Icons\png\checked-1.png" />
+    <Resource Include="Icons\png\checked.png" />
+    <Resource Include="Icons\png\clock-1.png" />
+    <Resource Include="Icons\png\clock.png" />
+    <Resource Include="Icons\png\close.png" />
+    <Resource Include="Icons\png\cloud-computing-1.png" />
+    <Resource Include="Icons\png\cloud-computing-2.png" />
+    <Resource Include="Icons\png\cloud-computing-3.png" />
+    <Resource Include="Icons\png\cloud-computing-4.png" />
+    <Resource Include="Icons\png\cloud-computing-5.png" />
+    <Resource Include="Icons\png\cloud-computing.png" />
+    <Resource Include="Icons\png\cloud.png" />
+    <Resource Include="Icons\png\command.png" />
+    <Resource Include="Icons\png\compact-disc-1.png" />
+    <Resource Include="Icons\png\compact-disc-2.png" />
+    <Resource Include="Icons\png\compact-disc.png" />
+    <Resource Include="Icons\png\compass.png" />
+    <Resource Include="Icons\png\compose.png" />
+    <Resource Include="Icons\png\controls-1.png" />
+    <Resource Include="Icons\png\controls-2.png" />
+    <Resource Include="Icons\png\controls-3.png" />
+    <Resource Include="Icons\png\controls-4.png" />
+    <Resource Include="Icons\png\controls-5.png" />
+    <Resource Include="Icons\png\controls-6.png" />
+    <Resource Include="Icons\png\controls-7.png" />
+    <Resource Include="Icons\png\controls-8.png" />
+    <Resource Include="Icons\png\controls-9.png" />
+    <Resource Include="Icons\png\controls.png" />
+    <Resource Include="Icons\png\database-1.png" />
+    <Resource Include="Icons\png\database-2.png" />
+    <Resource Include="Icons\png\database-3.png" />
+    <Resource Include="Icons\png\database.png" />
+    <Resource Include="Icons\png\diamond.png" />
+    <Resource Include="Icons\png\diploma.png" />
+    <Resource Include="Icons\png\dislike-1.png" />
+    <Resource Include="Icons\png\dislike.png" />
+    <Resource Include="Icons\png\divide-1.png" />
+    <Resource Include="Icons\png\divide.png" />
+    <Resource Include="Icons\png\division.png" />
+    <Resource Include="Icons\png\document.png" />
+    <Resource Include="Icons\png\download.png" />
+    <Resource Include="Icons\png\edit-1.png" />
+    <Resource Include="Icons\png\edit.png" />
+    <Resource Include="Icons\png\eject-1.png" />
+    <Resource Include="Icons\png\eject.png" />
+    <Resource Include="Icons\png\equal-1.png" />
+    <Resource Include="Icons\png\equal-2.png" />
+    <Resource Include="Icons\png\equal.png" />
+    <Resource Include="Icons\png\error.png" />
+    <Resource Include="Icons\png\exit-1.png" />
+    <Resource Include="Icons\png\exit-2.png" />
+    <Resource Include="Icons\png\exit.png" />
+    <Resource Include="Icons\png\eyeglasses.png" />
+    <Resource Include="Icons\png\fast-forward-1.png" />
+    <Resource Include="Icons\png\fast-forward.png" />
+    <Resource Include="Icons\png\fax.png" />
+    <Resource Include="Icons\png\file-1.png" />
+    <Resource Include="Icons\png\file-2.png" />
+    <Resource Include="Icons\png\file.png" />
+    <Resource Include="Icons\png\film.png" />
+    <Resource Include="Icons\png\fingerprint.png" />
+    <Resource Include="Icons\png\flag-1.png" />
+    <Resource Include="Icons\png\flag-2.png" />
+    <Resource Include="Icons\png\flag-3.png" />
+    <Resource Include="Icons\png\flag-4.png" />
+    <Resource Include="Icons\png\flag.png" />
+    <Resource Include="Icons\png\focus.png" />
+    <Resource Include="Icons\png\folder-1.png" />
+    <Resource Include="Icons\png\folder-10.png" />
+    <Resource Include="Icons\png\folder-11.png" />
+    <Resource Include="Icons\png\folder-12.png" />
+    <Resource Include="Icons\png\folder-13.png" />
+    <Resource Include="Icons\png\folder-14.png" />
+    <Resource Include="Icons\png\folder-15.png" />
+    <Resource Include="Icons\png\folder-16.png" />
+    <Resource Include="Icons\png\folder-17.png" />
+    <Resource Include="Icons\png\folder-18.png" />
+    <Resource Include="Icons\png\folder-19.png" />
+    <Resource Include="Icons\png\folder-2.png" />
+    <Resource Include="Icons\png\folder-3.png" />
+    <Resource Include="Icons\png\folder-4.png" />
+    <Resource Include="Icons\png\folder-5.png" />
+    <Resource Include="Icons\png\folder-6.png" />
+    <Resource Include="Icons\png\folder-7.png" />
+    <Resource Include="Icons\png\folder-8.png" />
+    <Resource Include="Icons\png\folder-9.png" />
+    <Resource Include="Icons\png\folder.png" />
+    <Resource Include="Icons\png\forbidden.png" />
+    <Resource Include="Icons\png\funnel.png" />
+    <Resource Include="Icons\png\garbage-1.png" />
+    <Resource Include="Icons\png\garbage-2.png" />
+    <Resource Include="Icons\png\garbage.png" />
+    <Resource Include="Icons\png\gift.png" />
+    <Resource Include="Icons\png\help.png" />
+    <Resource Include="Icons\png\hide.png" />
+    <Resource Include="Icons\png\hold.png" />
+    <Resource Include="Icons\png\home-1.png" />
+    <Resource Include="Icons\png\home-2.png" />
+    <Resource Include="Icons\png\home.png" />
+    <Resource Include="Icons\png\hourglass-1.png" />
+    <Resource Include="Icons\png\hourglass-2.png" />
+    <Resource Include="Icons\png\hourglass-3.png" />
+    <Resource Include="Icons\png\hourglass.png" />
+    <Resource Include="Icons\png\house.png" />
+    <Resource Include="Icons\png\id-card-1.png" />
+    <Resource Include="Icons\png\id-card-2.png" />
+    <Resource Include="Icons\png\id-card-3.png" />
+    <Resource Include="Icons\png\id-card-4.png" />
+    <Resource Include="Icons\png\id-card-5.png" />
+    <Resource Include="Icons\png\id-card.png" />
+    <Resource Include="Icons\png\idea.png" />
+    <Resource Include="Icons\png\incoming.png" />
+    <Resource Include="Icons\png\infinity.png" />
+    <Resource Include="Icons\png\info.png" />
+    <Resource Include="Icons\png\internet.png" />
+    <Resource Include="Icons\png\key.png" />
+    <Resource Include="Icons\png\lamp.png" />
+    <Resource Include="Icons\png\layers-1.png" />
+    <Resource Include="Icons\png\layers.png" />
+    <Resource Include="Icons\png\like-1.png" />
+    <Resource Include="Icons\png\like-2.png" />
+    <Resource Include="Icons\png\like.png" />
+    <Resource Include="Icons\png\link.png" />
+    <Resource Include="Icons\png\list-1.png" />
+    <Resource Include="Icons\png\list.png" />
+    <Resource Include="Icons\png\lock-1.png" />
+    <Resource Include="Icons\png\lock.png" />
+    <Resource Include="Icons\png\locked-1.png" />
+    <Resource Include="Icons\png\locked-2.png" />
+    <Resource Include="Icons\png\locked-3.png" />
+    <Resource Include="Icons\png\locked-4.png" />
+    <Resource Include="Icons\png\locked-5.png" />
+    <Resource Include="Icons\png\locked-6.png" />
+    <Resource Include="Icons\png\locked.png" />
+    <Resource Include="Icons\png\login.png" />
+    <Resource Include="Icons\png\magic-wand.png" />
+    <Resource Include="Icons\png\magnet-1.png" />
+    <Resource Include="Icons\png\magnet-2.png" />
+    <Resource Include="Icons\png\magnet.png" />
+    <Resource Include="Icons\png\map-1.png" />
+    <Resource Include="Icons\png\map-2.png" />
+    <Resource Include="Icons\png\map-location.png" />
+    <Resource Include="Icons\png\map.png" />
+    <Resource Include="Icons\png\megaphone-1.png" />
+    <Resource Include="Icons\png\megaphone.png" />
+    <Resource Include="Icons\png\menu-1.png" />
+    <Resource Include="Icons\png\menu-2.png" />
+    <Resource Include="Icons\png\menu-3.png" />
+    <Resource Include="Icons\png\menu-4.png" />
+    <Resource Include="Icons\png\menu.png" />
+    <Resource Include="Icons\png\microphone-1.png" />
+    <Resource Include="Icons\png\microphone.png" />
+    <Resource Include="Icons\png\minus-1.png" />
+    <Resource Include="Icons\png\minus.png" />
+    <Resource Include="Icons\png\more-1.png" />
+    <Resource Include="Icons\png\more-2.png" />
+    <Resource Include="Icons\png\more.png" />
+    <Resource Include="Icons\png\multiply-1.png" />
+    <Resource Include="Icons\png\multiply.png" />
+    <Resource Include="Icons\png\music-player-1.png" />
+    <Resource Include="Icons\png\music-player-2.png" />
+    <Resource Include="Icons\png\music-player-3.png" />
+    <Resource Include="Icons\png\music-player.png" />
+    <Resource Include="Icons\png\mute.png" />
+    <Resource Include="Icons\png\muted.png" />
+    <Resource Include="Icons\png\navigation-1.png" />
+    <Resource Include="Icons\png\navigation.png" />
+    <Resource Include="Icons\png\network.png" />
+    <Resource Include="Icons\png\newspaper.png" />
+    <Resource Include="Icons\png\next.png" />
+    <Resource Include="Icons\png\note.png" />
+    <Resource Include="Icons\png\notebook-1.png" />
+    <Resource Include="Icons\png\notebook-2.png" />
+    <Resource Include="Icons\png\notebook-3.png" />
+    <Resource Include="Icons\png\notebook-4.png" />
+    <Resource Include="Icons\png\notebook-5.png" />
+    <Resource Include="Icons\png\notebook.png" />
+    <Resource Include="Icons\png\notepad-1.png" />
+    <Resource Include="Icons\png\notepad-2.png" />
+    <Resource Include="Icons\png\notepad.png" />
+    <Resource Include="Icons\png\notification.png" />
+    <Resource Include="Icons\png\paper-plane-1.png" />
+    <Resource Include="Icons\png\paper-plane.png" />
+    <Resource Include="Icons\png\pause-1.png" />
+    <Resource Include="Icons\png\pause.png" />
+    <Resource Include="Icons\png\percent-1.png" />
+    <Resource Include="Icons\png\percent.png" />
+    <Resource Include="Icons\png\perspective.png" />
+    <Resource Include="Icons\png\photo-camera-1.png" />
+    <Resource Include="Icons\png\photo-camera.png" />
+    <Resource Include="Icons\png\photos.png" />
+    <Resource Include="Icons\png\picture-1.png" />
+    <Resource Include="Icons\png\picture-2.png" />
+    <Resource Include="Icons\png\picture.png" />
+    <Resource Include="Icons\png\pin.png" />
+    <Resource Include="Icons\png\placeholder-1.png" />
+    <Resource Include="Icons\png\placeholder-2.png" />
+    <Resource Include="Icons\png\placeholder-3.png" />
+    <Resource Include="Icons\png\placeholder.png" />
+    <Resource Include="Icons\png\placeholders.png" />
+    <Resource Include="Icons\png\play-button-1.png" />
+    <Resource Include="Icons\png\play-button.png" />
+    <Resource Include="Icons\png\plus.png" />
+    <Resource Include="Icons\png\power.png" />
+    <Resource Include="Icons\png\previous.png" />
+    <Resource Include="Icons\png\price-tag.png" />
+    <Resource Include="Icons\png\print.png" />
+    <Resource Include="Icons\png\push-pin.png" />
+    <Resource Include="Icons\png\radar.png" />
+    <Resource Include="Icons\png\reading.png" />
+    <Resource Include="Icons\png\record.png" />
+    <Resource Include="Icons\png\repeat-1.png" />
+    <Resource Include="Icons\png\repeat.png" />
+    <Resource Include="Icons\png\restart.png" />
+    <Resource Include="Icons\png\resume.png" />
+    <Resource Include="Icons\png\rewind-1.png" />
+    <Resource Include="Icons\png\rewind.png" />
+    <Resource Include="Icons\png\route.png" />
+    <Resource Include="Icons\png\save.png" />
+    <Resource Include="Icons\png\search-1.png" />
+    <Resource Include="Icons\png\search.png" />
+    <Resource Include="Icons\png\send.png" />
+    <Resource Include="Icons\png\server-1.png" />
+    <Resource Include="Icons\png\server-2.png" />
+    <Resource Include="Icons\png\server-3.png" />
+    <Resource Include="Icons\png\server.png" />
+    <Resource Include="Icons\png\settings-1.png" />
+    <Resource Include="Icons\png\settings-2.png" />
+    <Resource Include="Icons\png\settings-3.png" />
+    <Resource Include="Icons\png\settings-4.png" />
+    <Resource Include="Icons\png\settings-5.png" />
+    <Resource Include="Icons\png\settings-6.png" />
+    <Resource Include="Icons\png\settings-7.png" />
+    <Resource Include="Icons\png\settings-8.png" />
+    <Resource Include="Icons\png\settings-9.png" />
+    <Resource Include="Icons\png\settings.png" />
+    <Resource Include="Icons\png\share-1.png" />
+    <Resource Include="Icons\png\share-2.png" />
+    <Resource Include="Icons\png\share.png" />
+    <Resource Include="Icons\png\shuffle-1.png" />
+    <Resource Include="Icons\png\shuffle.png" />
+    <Resource Include="Icons\png\shutdown.png" />
+    <Resource Include="Icons\png\sign-1.png" />
+    <Resource Include="Icons\png\sign.png" />
+    <Resource Include="Icons\png\skip.png" />
+    <Resource Include="Icons\png\smartphone-1.png" />
+    <Resource Include="Icons\png\smartphone-10.png" />
+    <Resource Include="Icons\png\smartphone-11.png" />
+    <Resource Include="Icons\png\smartphone-2.png" />
+    <Resource Include="Icons\png\smartphone-3.png" />
+    <Resource Include="Icons\png\smartphone-4.png" />
+    <Resource Include="Icons\png\smartphone-5.png" />
+    <Resource Include="Icons\png\smartphone-6.png" />
+    <Resource Include="Icons\png\smartphone-7.png" />
+    <Resource Include="Icons\png\smartphone-8.png" />
+    <Resource Include="Icons\png\smartphone-9.png" />
+    <Resource Include="Icons\png\smartphone.png" />
+    <Resource Include="Icons\png\speaker-1.png" />
+    <Resource Include="Icons\png\speaker-2.png" />
+    <Resource Include="Icons\png\speaker-3.png" />
+    <Resource Include="Icons\png\speaker-4.png" />
+    <Resource Include="Icons\png\speaker-5.png" />
+    <Resource Include="Icons\png\speaker-6.png" />
+    <Resource Include="Icons\png\speaker-7.png" />
+    <Resource Include="Icons\png\speaker-8.png" />
+    <Resource Include="Icons\png\speaker.png" />
+    <Resource Include="Icons\png\spotlight.png" />
+    <Resource Include="Icons\png\star-1.png" />
+    <Resource Include="Icons\png\star.png" />
+    <Resource Include="Icons\png\stop-1.png" />
+    <Resource Include="Icons\png\stop.png" />
+    <Resource Include="Icons\png\stopwatch-1.png" />
+    <Resource Include="Icons\png\stopwatch-2.png" />
+    <Resource Include="Icons\png\stopwatch-3.png" />
+    <Resource Include="Icons\png\stopwatch-4.png" />
+    <Resource Include="Icons\png\stopwatch.png" />
+    <Resource Include="Icons\png\street-1.png" />
+    <Resource Include="Icons\png\street.png" />
+    <Resource Include="Icons\png\substract-1.png" />
+    <Resource Include="Icons\png\substract.png" />
+    <Resource Include="Icons\png\success.png" />
+    <Resource Include="Icons\png\switch-1.png" />
+    <Resource Include="Icons\png\switch-2.png" />
+    <Resource Include="Icons\png\switch-3.png" />
+    <Resource Include="Icons\png\switch-4.png" />
+    <Resource Include="Icons\png\switch-5.png" />
+    <Resource Include="Icons\png\switch-6.png" />
+    <Resource Include="Icons\png\switch-7.png" />
+    <Resource Include="Icons\png\switch.png" />
+    <Resource Include="Icons\png\tabs-1.png" />
+    <Resource Include="Icons\png\tabs.png" />
+    <Resource Include="Icons\png\target.png" />
+    <Resource Include="Icons\png\television-1.png" />
+    <Resource Include="Icons\png\television.png" />
+    <Resource Include="Icons\png\time.png" />
+    <Resource Include="Icons\png\trash.png" />
+    <Resource Include="Icons\png\umbrella.png" />
+    <Resource Include="Icons\png\unlink.png" />
+    <Resource Include="Icons\png\unlocked-1.png" />
+    <Resource Include="Icons\png\unlocked-2.png" />
+    <Resource Include="Icons\png\unlocked.png" />
+    <Resource Include="Icons\png\upload.png" />
+    <Resource Include="Icons\png\user-1.png" />
+    <Resource Include="Icons\png\user-2.png" />
+    <Resource Include="Icons\png\user-3.png" />
+    <Resource Include="Icons\png\user-4.png" />
+    <Resource Include="Icons\png\user-5.png" />
+    <Resource Include="Icons\png\user-6.png" />
+    <Resource Include="Icons\png\user-7.png" />
+    <Resource Include="Icons\png\user.png" />
+    <Resource Include="Icons\png\users-1.png" />
+    <Resource Include="Icons\png\users.png" />
+    <Resource Include="Icons\png\video-camera-1.png" />
+    <Resource Include="Icons\png\video-camera.png" />
+    <Resource Include="Icons\png\video-player-1.png" />
+    <Resource Include="Icons\png\video-player-2.png" />
+    <Resource Include="Icons\png\video-player.png" />
+    <Resource Include="Icons\png\view-1.png" />
+    <Resource Include="Icons\png\view-2.png" />
+    <Resource Include="Icons\png\view.png" />
+    <Resource Include="Icons\png\volume-control-1.png" />
+    <Resource Include="Icons\png\volume-control.png" />
+    <Resource Include="Icons\png\warning.png" />
+    <Resource Include="Icons\png\wifi-1.png" />
+    <Resource Include="Icons\png\wifi.png" />
+    <Resource Include="Icons\png\windows-1.png" />
+    <Resource Include="Icons\png\windows-2.png" />
+    <Resource Include="Icons\png\windows-3.png" />
+    <Resource Include="Icons\png\windows-4.png" />
+    <Resource Include="Icons\png\windows.png" />
+    <Resource Include="Icons\png\wireless-internet.png" />
+    <Resource Include="Icons\png\worldwide-1.png" />
+    <Resource Include="Icons\png\worldwide.png" />
+    <Resource Include="Icons\png\zoom-in.png" />
+    <Resource Include="Icons\png\zoom-out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\no-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LICENSE.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

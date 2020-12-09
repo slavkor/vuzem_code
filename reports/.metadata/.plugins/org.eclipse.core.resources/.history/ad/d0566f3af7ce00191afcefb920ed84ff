@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_list_018" pageWidth="595" pageHeight="842" columnWidth="567" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="9c76b80e-f80b-46b7-8e3f-031446da855f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<parameter name="company" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[]]>
+	</queryString>
+	<columnHeader>
+		<band height="14">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<staticText>
+				<reportElement x="1" y="0" width="186" height="14" uuid="e2813153-7bbe-4afc-8875-56ade1de7d3f">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<text><![CDATA[Na Gradbišču]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="0" width="187" height="14" uuid="2229dcb6-df66-4b1e-b4ff-2c8e76e31d6c">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<text><![CDATA[Doma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="374" y="0" width="187" height="14" uuid="4012f1d8-5919-4f14-9b48-df29d9be1d69">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<text><![CDATA[Planirano]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<frame>
+				<reportElement x="0" y="0" width="187" height="28" uuid="5d9ed5a4-63ce-4144-bfd1-aab9c949a5d6">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<subreport>
+					<reportElement mode="Transparent" x="0" y="0" width="187" height="28" uuid="a5e5256f-45c6-4521-b343-32c4712b3edd">
+						<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+						<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					</reportElement>
+					<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+					<subreportExpression><![CDATA["empl/employee_list_018a.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+			<subreport>
+				<reportElement x="187" y="0" width="187" height="28" uuid="485a1035-40a2-4dd6-95d7-6ddc22ee155f">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportExpression><![CDATA["empl/employee_list_018b.jasper"]]></subreportExpression>
+			</subreport>
+			<frame>
+				<reportElement x="374" y="0" width="187" height="28" uuid="7633f7a2-bbd2-4a32-acfe-2c4e71c89c90"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<subreport>
+					<reportElement x="0" y="0" width="187" height="28" uuid="9e971fa8-3cf1-45f6-9e9e-8c5f41645ffc">
+						<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+						<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					</reportElement>
+					<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+					<subreportExpression><![CDATA["empl/employee_list_018c.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

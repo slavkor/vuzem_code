@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Ism.Common.Views.EditContactView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:ui="clr-namespace:Ism.Infrastructure.Ui;assembly=Ism.Infrastructure"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Common.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"  
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ctrl="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             prism:ViewModelLocator.AutoWireViewModel="True"              
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ctrl:LayoutGroup MaxWidth="500" Grid.Row="0" DataContext="{Binding Contact,UpdateSourceTrigger=PropertyChanged}" ctrl:EnterKeyTraversal.IsEnabled="True">
+            <ctrl:LabelledTextBox Label="Šifra" Text="{Binding Iid, Mode=OneTime}" IsEnabled="False" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+            <ctrl:LabelledTextBox Label="Ime" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+            <ctrl:LabelledTextBox Label="Priimek" Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+            <ctrl:LabelledTextBox Label="Telefon" Text="{Binding Phone,UpdateSourceTrigger=PropertyChanged}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+            <ctrl:LabelledTextBox Label="Mobilni telefon" Text="{Binding MobilePhone,UpdateSourceTrigger=PropertyChanged}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+            <ctrl:LabelledTextBox Label="Službeni telefon" Text="{Binding OrganizationPhone,UpdateSourceTrigger=PropertyChanged}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+            <ctrl:LabelledTextBox Label="Službeni mobilni telefon" Text="{Binding OrganizationMobilePhone,UpdateSourceTrigger=PropertyChanged}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+            <ctrl:LabelledTextBox Label="Email" Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+            <ctrl:LabelledTextBox Label="Opis" MultiLine="True" Text="{Binding Description,UpdateSourceTrigger=PropertyChanged}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+        </ctrl:LayoutGroup>
+
+        <!--<xctk:AutoSelectTextBox Grid.Row="1">
+        </xctk:AutoSelectTextBox>-->
+        <DockPanel Grid.Row="2"  Grid.Column="0" LastChildFill="False">
+            <Button DockPanel.Dock="Left" Content="Prekliči" Command="{Binding CancelCommand}" ></Button>
+            <Button DockPanel.Dock="Right" Content="Shrani" Command="{Binding SaveCommand}"></Button>
+        </DockPanel>
+    </Grid>
+</UserControl>
+

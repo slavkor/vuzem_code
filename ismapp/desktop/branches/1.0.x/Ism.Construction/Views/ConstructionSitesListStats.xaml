@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Ism.Construction.Views.ConstructionSitesListStats"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Construction.Views"
+             xmlns:localrgn="clr-namespace:Ism.Construction"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converter="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:xct="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:timelines="clr-namespace:Telerik.Windows.Controls.Timeline;assembly=Telerik.Windows.Controls.DataVisualization"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/ConstructionSites.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <converter:DayModelToDateTimeConverter x:Key="DayToDateTime"></converter:DayModelToDateTimeConverter>
+            <converter:SolidColorBrushConverter x:Key="BrushConverter"></converter:SolidColorBrushConverter>
+            <converter:RangeSliderConverter x:Key="RangeSliderConverte"></converter:RangeSliderConverter>
+            <converter:TimelinePeriodConverter x:Key="TimelinePeriodConverter"></converter:TimelinePeriodConverter>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <telerik:RadTimeBar Grid.Column="1" VerticalAlignment="Top" 
+                            IsSnapToIntervalEnabled="True"
+                            EnableSparklineVirtualization="False"
+                            PeriodStart="{Binding Start, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            PeriodEnd="{Binding End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            VisiblePeriodStart="{Binding VStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            VisiblePeriodEnd="{Binding VEnd , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            SelectionStart="{Binding SStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            SelectionEnd="{Binding SEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <telerik:RadTimeBar.Intervals>
+                <telerik:YearInterval />
+                <telerik:MonthInterval />
+                <telerik:WeekInterval />
+                <telerik:DayInterval />
+            </telerik:RadTimeBar.Intervals>
+
+            <Grid>
+                <telerik:RadCartesianChart Margin="0 0 0 0 ">
+                    <telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:LinearAxis Visibility="Collapsed"/>
+                    </telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:DateTimeContinuousAxis Visibility="Collapsed"  MajorStep="1" MajorStepUnit="Day" Minimum="{Binding Start}" Maximum="{Binding End}" />
+                    </telerik:RadCartesianChart.HorizontalAxis>
+
+                    <telerik:RadCartesianChart.Series>
+                        <telerik:BarSeries ItemsSource="{Binding Dates}" 
+                                           CombineMode="Stack"
+                                           ValueBinding="Limit" 
+                                           CategoryBinding="Date" 
+                                           PaletteMode="Series"
+                                           ShowLabels="False">
+                            <telerik:BarSeries.DefaultVisualStyle>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="Green" />
+                                </Style>
+                            </telerik:BarSeries.DefaultVisualStyle>
+                        </telerik:BarSeries>
+                        <telerik:BarSeries ItemsSource="{Binding Dates}" 
+                                           CombineMode="Stack"
+                                           ValueBinding="LimitOverflow" 
+                                           CategoryBinding="Date" 
+                                           PaletteMode="Series"
+                                           ShowLabels="True">
+                            <telerik:BarSeries.DefaultVisualStyle>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="Red" />
+                                </Style>
+                            </telerik:BarSeries.DefaultVisualStyle>
+                            <telerik:BarSeries.LabelDefinitions>
+                                <telerik:ChartSeriesLabelDefinition HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    <telerik:ChartSeriesLabelDefinition.Template>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding DataItem.LimitOverflow}"  FontSize="10"  Foreground="Red" FontWeight="Bold">
+                                                    <TextBlock.LayoutTransform>
+                                                        <TransformGroup>
+                                                            <TransformGroup.Children>
+                                                                <RotateTransform Angle="-90"/>
+                                                            </TransformGroup.Children>
+                                                        </TransformGroup>
+                                                    </TextBlock.LayoutTransform>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </telerik:ChartSeriesLabelDefinition.Template>
+                                </telerik:ChartSeriesLabelDefinition>
+                            </telerik:BarSeries.LabelDefinitions>                            
+                        </telerik:BarSeries>
+                        <telerik:LineSeries CombineMode="Stack" ValueBinding="Max" CategoryBinding="Date" ItemsSource="{Binding Dates}" Stroke="Red" StrokeThickness="1"/>
+                    </telerik:RadCartesianChart.Series>
+                </telerik:RadCartesianChart>
+            </Grid>
+            
+        </telerik:RadTimeBar>
+    </Grid>
+</UserControl>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_list_009" pageWidth="595" pageHeight="842" columnWidth="567" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="bddf4b77-0b5d-42ee-9071-e44225accaa3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/ISM/employee_list_010"/>
+	<property name="net.sf.jasperreports.data.adapter" value="ISM.xml"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/ISM/employee_list_010_files/main_jrxml"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="company" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<parameter name="reportid" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "lastname",
+    "expression" : "employee.lastname"
+  }, {
+    "name" : "name",
+    "expression" : "employee.name"
+  }, {
+    "name" : "uuid",
+    "expression" : "employee.uuid"
+  }, {
+    "name" : "departtime",
+    "expression" : "departure.departtime"
+  }, {
+    "name" : "pname",
+    "expression" : "project.name"
+  }, {
+    "name" : "sname",
+    "expression" : "project.site.name"
+  }, {
+    "name" : "cname",
+    "expression" : "project.site.customer.name"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "$P{url}/rpt/departure/getplan?token=$P{token}"
+  },
+  "headersMap" : {
+    "reportid" : "$P{reportid}"
+  },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="lastname" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="uuid" class="java.lang.String"/>
+	<field name="departtime" class="java.lang.String"/>
+	<field name="pname" class="java.lang.String"/>
+	<field name="sname" class="java.lang.String"/>
+	<field name="cname" class="java.lang.String"/>
+	<sortField name="lastname"/>
+	<sortField name="departtime" order="Descending"/>
+	<variable name="currPage" class="java.lang.Integer" resetType="Page" incrementType="Page">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<group name="zaposleni" keepTogether="true">
+		<groupExpression><![CDATA[$F{uuid}]]></groupExpression>
+		<groupHeader>
+			<band height="11">
+				<textField>
+					<reportElement mode="Opaque" x="0" y="0" width="567" height="11" backcolor="#E6E6E6" uuid="7c24cabe-4490-4f4d-a09b-8f6bde301551">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="mm"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lastname} + " " + $F{name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="17">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<staticText>
+				<reportElement x="0" y="0" width="567" height="17" uuid="5a6db5ed-d7a5-4d95-a6d9-50cdc3e178a3">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PLAN ODHODOV]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="11">
+			<printWhenExpression><![CDATA[$F{pname} != null]]></printWhenExpression>
+			<textField>
+				<reportElement x="0" y="0" width="440" height="11" uuid="a42ba8a2-2912-4e9b-9a53-1910187260b5">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2" rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cname} + " - " + $F{sname} + " - " + $F{pname}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd.MM.yyyy hh:mm">
+				<reportElement x="440" y="0" width="127" height="11" uuid="8378ede4-5f79-46d1-80d5-4a12f332bd1f">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2" rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMddhhmmss").parse($F{departtime})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="11" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<textField evaluationTime="Auto">
+				<reportElement x="426" y="0" width="141" height="11" uuid="8faf1a3a-b223-4554-9f2a-85be11beb433">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{currPage} +"/" +$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="284" height="11" uuid="7d02c2a8-1c11-4a4b-ad20-26f43594c241">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="11" uuid="34c1ae28-deba-4b5d-9471-fe7a2ee98291">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Obr:empl-list-010]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

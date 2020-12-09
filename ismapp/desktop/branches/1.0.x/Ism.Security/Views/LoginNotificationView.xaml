@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Ism.Security.Views.LoginNotificationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Security.Views"
+             xmlns:ui="clr-namespace:Ism.Infrastructure.Ui;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:prism="http://prismlibrary.com/"    
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Width="300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="lbl"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Grid.IsSharedSizeScope="True" Content="Uporabniško ime"></Label>
+                <Label Grid.Column="0" Grid.Row="1" Grid.IsSharedSizeScope="True" Content="Geslo"></Label>
+
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding UserName}" ui:FocusAdvancement.AdvancesByKey="True" ></TextBox>
+            <PasswordBox x:Name="pwd" Grid.Column="1" Grid.Row="1" ui:FocusAdvancement.AdvancesByKey="True">
+                <PasswordBox.InputBindings>
+                    <KeyBinding Key="Return" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=pwd}"></KeyBinding>
+                </PasswordBox.InputBindings>
+            </PasswordBox>
+                <!--<xctk:WatermarkPasswordBox Grid.Column="1" Grid.Row="1" Watermark="geslo"></xctk:WatermarkPasswordBox>-->
+            <telerik:RadButton Grid.Row="2" Command="{Binding SettingsCommand}" IsBackgroundVisible="False" Height="40" Width="40">
+                <telerik:RadButton.Content>
+                    <Image  Source="pack://application:,,,/Ism.Infrastructure;component/Icons/png/settings-6.png" Stretch="Fill" />
+                </telerik:RadButton.Content>
+            </telerik:RadButton>
+            </Grid>
+ 
+    </Grid>
+</UserControl>

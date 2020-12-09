@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_podlage_001" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dc97e690-32f2-4926-ad79-2f0acd850700">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<property name="ireport.jasperserver.url" value="http://api.ismvuzem.si:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/ISM/employee_podlage_001"/>
+	<property name="net.sf.jasperreports.data.adapter" value="ISM.xml"/>
+	<parameter name="company" class="java.lang.String"/>
+	<parameter name="month" class="java.lang.String"/>
+	<parameter name="year" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<parameter name="url" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "name",
+    "expression" : "name"
+  }, {
+    "name" : "type",
+    "expression" : "type"
+  }, {
+    "name" : "fromdate",
+    "expression" : "fromdate"
+  }, {
+    "name" : "todate",
+    "expression" : "todate"
+  }, {
+    "name" : "lastname",
+    "expression" : "lastname"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "$P{url}/rpt/$P{company}/employees/podlage/$P{year}/$P{month}?token=$P{token}"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="lastname" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="type" class="java.lang.String"/>
+	<field name="fromdate" class="java.lang.String"/>
+	<field name="todate" class="java.lang.String"/>
+	<group name="name">
+		<groupExpression><![CDATA[$F{name}]]></groupExpression>
+	</group>
+	<pageHeader>
+		<band height="36" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<staticText>
+				<reportElement x="0" y="20" width="111" height="14" uuid="34d55179-08ad-4ab3-a80f-e61639bea565">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Priimek]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="20" width="111" height="14" uuid="c92c785b-fe12-441b-81c2-bc892c46296a">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Podlaga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="20" width="111" height="14" uuid="c8748aec-faf4-45ca-84a1-e40a37454059">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Velja do]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="20" width="111" height="14" uuid="11bab80c-5317-426c-bbf9-cef0c61ca582">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Ime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="20" width="111" height="14" uuid="25136f11-aa09-48a3-9ca9-46e003bcda7e">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Velja od]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="14" uuid="21560239-5abf-4077-9bd6-2d0fc8ebeada">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportExpression><![CDATA["hdr/hdr_A4_int_portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="14">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="14" uuid="4d1944b0-6bb2-4ccc-8302-57f1246747ef">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lastname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="14" uuid="104e6094-f2a4-47f7-9427-cbdb852ddca7">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="14" uuid="68fe211c-f589-4dc5-90e6-bb77cb9ba1ef">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="14" uuid="ba0f9aeb-c5de-4e63-9b62-08ed1ed0268e">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[DATEFORMAT(DATE(INTEGER_VALUE( LEFT($F{fromdate},4)),INTEGER_VALUE( MID($F{fromdate},5,2)),INTEGER_VALUE( MID($F{fromdate},7,2))),"dd.MM.yyyy")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="444" y="0" width="111" height="14" uuid="d72a1028-26f7-443a-a10b-45328629de7c">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[DATEFORMAT(DATE(INTEGER_VALUE( LEFT($F{todate},4)),INTEGER_VALUE( MID($F{todate},5,2)),INTEGER_VALUE( MID($F{todate},7,2))),"dd.MM.yyyy")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="11" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="444" y="0" width="111" height="11" uuid="daba32cf-28b0-4ac3-ac4f-128032e6f805"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="11" uuid="02e90985-6987-4f20-84ef-e524e1cbd4dd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Obr: empl-pod-001]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="235" y="0" width="85" height="11" uuid="07cde1d6-b904-4540-9581-bcda6d5b7b9f">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

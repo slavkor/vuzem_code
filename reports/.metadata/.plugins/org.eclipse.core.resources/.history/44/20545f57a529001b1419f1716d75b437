@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_history_hire_001" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="410bcd2f-1b4b-4199-9463-188db294df6e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<parameter name="employeeId" class="java.lang.String"/>
+	<parameter name="company" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="hdr" class="java.lang.String"/>
+	<parameter name="reportid" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "company",
+    "expression" : "company"
+  }, {
+    "name" : "from",
+    "expression" : "from"
+  }, {
+    "name" : "to",
+    "expression" : "to"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "$P{url}/rpt/employees/$P{employeeId}/hirehistory?token=$P{token}"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="company" class="java.lang.String"/>
+	<field name="from" class="java.lang.String"/>
+	<field name="to" class="java.lang.String"/>
+	<columnHeader>
+		<band height="17">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="0" width="70" height="17" backcolor="#EDEDED" uuid="3f7a7e3d-e236-4f52-aa69-14ea28205ad5">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATUM DO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="410" height="17" backcolor="#EDEDED" uuid="2b41f924-3c90-40f7-af8a-64b519185575">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PDOJETJE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="410" y="0" width="70" height="17" backcolor="#EDEDED" uuid="f2caf971-e65a-42a4-a11f-c0e498fe2184">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATUM OD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<textField>
+				<reportElement x="0" y="0" width="410" height="17" uuid="e9a613f8-180f-4d48-87ca-aa5481309bec">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{company}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd.MM.yyyy">
+				<reportElement x="410" y="0" width="70" height="17" uuid="6a986f8f-9925-4da1-bec3-92b2df11c0ca">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse($F{from})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd.MM.yyyy">
+				<reportElement x="480" y="0" width="70" height="17" uuid="c6c62afe-bbb3-412c-a472-789b2d376809">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse($F{to})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

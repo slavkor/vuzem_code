@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_history_001" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="20011a06-f513-48df-9c63-4192f097608d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM"/>
+	<property name="net.sf.jasperreports.data.adapter" value="ISM.xml"/>
+	<parameter name="reportid" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "name",
+    "expression" : "name"
+  }, {
+    "name" : "lastname",
+    "expression" : "lastname"
+  }, {
+    "name" : "taxnumber",
+    "expression" : "taxnumber"
+  }, {
+    "name" : "personalidnumber",
+    "expression" : "personalidnumber"
+  }, {
+    "name" : "nationality",
+    "expression" : "nationality"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "api.ismvuzem.si/rpt/employees/6281400b-2aa1-45e6-9249-1e8fc99191c4/data?token=54b9a6fd6b5c80e975d3a77e5d29d154b6067e3ec8d36eed266c4902abfadc60c0b954551a853098"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="name" class="java.lang.String"/>
+	<field name="lastname" class="java.lang.String"/>
+	<field name="taxnumber" class="java.lang.String"/>
+	<field name="personalidnumber" class="java.lang.String"/>
+	<field name="nationality" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<staticText>
+				<reportElement x="338" y="0" width="111" height="17" uuid="6c2c339c-8df2-4bc3-8534-a46d50b8dcc6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe328e73-af84-44f8-af34-429d55e6143a"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<text><![CDATA[personalidnumber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="0" width="111" height="17" uuid="71d34f2c-1cf9-4e75-8ede-e729be443f2b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1b6bed3a-7df1-45cc-9a40-cd6bb1e09006"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<text><![CDATA[name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="0" width="111" height="17" uuid="58acd3ba-54dd-427b-bf85-7b7bd9330ba2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da5d424f-4c4b-40f1-9b98-c18845fcba45"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<text><![CDATA[taxnumber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="0" width="111" height="17" uuid="de0fc0db-a3fd-42c7-a128-bff9cf3bf5fb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d719ab0e-08f3-4109-91ab-1c74973d00f8"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<text><![CDATA[lastname]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="0" width="111" height="17" uuid="49d9c291-93a7-413a-8d24-fc8f57e0f756">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4509b75c-563d-4685-a7ae-f10912411187"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<text><![CDATA[nationality]]></text>
+			</staticText>
+		</band>
+		<band height="17">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<subreport isUsingCache="false" runToBottom="false">
+				<reportElement x="-20" y="0" width="595" height="17" uuid="9c2e1e96-7417-49d8-8ce3-e6f2ceaae243">
+					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportExpression><![CDATA["empl/employee_history_hire_001.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="17">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<subreport>
+				<reportElement x="-20" y="0" width="595" height="17" uuid="85ad6914-9fd7-409c-b04c-5427655d8c65">
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportExpression><![CDATA["empl/employee_history_work_001.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<textField pattern="dd.MM.yyyy HH:mm">
+				<reportElement x="141" y="0" width="285" height="11" uuid="2acc94d4-a8ca-422f-9583-5eff796517ce">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="11" uuid="5e93d88c-88a0-4208-b9cf-4357120f0f70">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Obr:empl-history-001]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="11" width="566" height="11" uuid="82e3e862-533a-47bc-a39a-da0dc93abcb3">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<printWhenExpression><![CDATA[$P{reportid} != null]]></printWhenExpression>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportParameter name="report">
+					<subreportParameterExpression><![CDATA[$P{reportid} == "" ? "1" : $P{reportid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA["hdr/iso_001.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="csite_stats_001" pageWidth="595" pageHeight="842" columnWidth="567" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="3ec2c7a1-c1ef-4eb2-883b-47489dba9340">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="net.sf.jasperreports.data.adapter" value="ISM.xml"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<parameter name="siteId" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "dep",
+    "expression" : "dep"
+  }, {
+    "name" : "cnt",
+    "expression" : "cnt"
+  }, {
+    "name" : "dir",
+    "expression" : "dir"
+  }, {
+    "name" : "site",
+    "expression" : "site"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "api.ism/rpt/csite/328e3cdc-1c26-4ff8-b421-c7cd77fe1ed1/departurestats?token=8b4f13d0b31a7fc7bd0c4aed105d4af8c3d9403494f5c752485bd3af45b60351faba8ad93c393033"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="dep" class="java.lang.String"/>
+	<field name="cnt" class="java.lang.Integer"/>
+	<field name="dir" class="java.lang.String"/>
+	<field name="site" class="java.lang.String"/>
+	<variable name="from_sum" class="java.lang.Integer" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{dir} == "FROM" ? $F{cnt} : 1]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{cnt}]]></initialValueExpression>
+	</variable>
+	<variable name="to_sum" class="java.lang.Integer" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{dir} == "TO" ? $F{cnt} : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{cnt}]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="29">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<textField>
+				<reportElement x="0" y="-1" width="567" height="30" uuid="02b10308-411d-4c5d-aeef-8a75cb8d6adc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="75254d54-1ed9-4b5b-a5ae-5007d22a3881"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{site}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="14">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="189" height="14" backcolor="#DEDEDE" uuid="784d0b8e-1134-4eae-a1e4-d18c92563259">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ff10bed-4603-4b6c-b6a0-1212c3cc9b3c"/>
+				</reportElement>
+				<text><![CDATA[dep]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="189" y="0" width="189" height="14" backcolor="#DEDEDE" uuid="b3c51f6b-08ee-4235-8a9f-fec6c79e848f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="48c66592-ec36-42ae-8734-5d7ab8a5edcf"/>
+				</reportElement>
+				<text><![CDATA[cnt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="378" y="0" width="189" height="14" backcolor="#DEDEDE" uuid="1093bd8f-7e84-47f5-9707-3d47d05b627c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c2184e53-07e9-424c-ad72-9df154eadf5d"/>
+				</reportElement>
+				<text><![CDATA[dir]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14">
+			<textField pattern="dd.MM.yyyy HH:mm">
+				<reportElement x="378" y="0" width="189" height="14" uuid="85fa3dc1-2f35-40c3-9f92-b39216866376">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ff10bed-4603-4b6c-b6a0-1212c3cc9b3c"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMddHHmmss").parse($F{dep})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="0" width="189" height="14" uuid="ed97fa5c-7acb-41f1-b298-c556302691ae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="48c66592-ec36-42ae-8734-5d7ab8a5edcf"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cnt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="189" height="14" uuid="b2545a5d-3bf0-44cc-a059-b117d6344b40">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c2184e53-07e9-424c-ad72-9df154eadf5d"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{dir}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="11" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<textField>
+				<reportElement x="241" y="0" width="85" height="11" uuid="f3dc6af6-b48e-48b0-958e-79a474435a47">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="11" uuid="3b44067f-b521-4a84-a151-078a3c185aa7">
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Obr: site_stats_001]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="456" y="0" width="111" height="11" uuid="abc3e010-9773-465e-acd3-b916b1b6f80d">
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="25">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="188" height="14" backcolor="#E6E6E6" uuid="aa28d066-c507-4eb9-bcdb-4a223f3c1bb4">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trenutno na gradbišču]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="189" y="0" width="136" height="14" backcolor="#E6E6E6" uuid="4a4ab2fe-c6dd-49e8-ae80-a408b4190cf6">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{to_sum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="14" width="111" height="11" uuid="f0dc5126-1d7e-4709-a97d-a9332c9e426b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Obr: site_stats_001]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="241" y="14" width="85" height="11" uuid="01b382b8-709e-41cc-b4ed-2468fc59d3c1">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="456" y="14" width="111" height="11" uuid="b6f6c580-1927-4688-bbaf-4ae145e1ae41"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="325" y="0" width="136" height="14" backcolor="#E6E6E6" uuid="419f49e9-4674-46da-82d2-b62e908bcee0">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{from_sum}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

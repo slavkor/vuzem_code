@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_list_018" pageWidth="595" pageHeight="842" columnWidth="567" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="9c76b80e-f80b-46b7-8e3f-031446da855f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<parameter name="company" class="java.lang.String"/>
+	<parameter name="reportid" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[]]>
+	</queryString>
+	<variable name="currPage" class="java.lang.Integer" resetType="Page" incrementType="Page">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="187" height="14" backcolor="#D9D9D9" uuid="e2813153-7bbe-4afc-8875-56ade1de7d3f">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[NA GRADBIŠČU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="187" y="0" width="187" height="14" backcolor="#D9D9D9" uuid="2229dcb6-df66-4b1e-b4ff-2c8e76e31d6c">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[DOMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="374" y="0" width="196" height="14" backcolor="#D9D9D9" uuid="4012f1d8-5919-4f14-9b48-df29d9be1d69">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[PLAN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<subreport>
+				<reportElement x="187" y="0" width="187" height="28" uuid="485a1035-40a2-4dd6-95d7-6ddc22ee155f">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportExpression><![CDATA["empl/employee_list_018b.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="0" width="187" height="28" uuid="4e040a12-fedc-4efb-a266-e36299f98e89">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportExpression><![CDATA["empl/employee_list_018a.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="374" y="0" width="196" height="28" uuid="1fd71924-b59e-47d3-9e08-f3d7da85932b">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportExpression><![CDATA["empl/employee_list_018c.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="22">
+			<textField pattern="dd.MM.yyyy HH:mm">
+				<reportElement x="141" y="0" width="285" height="11" uuid="4925e182-f4e7-4468-97cd-d5fdef64e462">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="11" uuid="f04d82f5-be5c-470a-b1f6-6ce7afdd3af2">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Obr:empl-list-017]]></text>
+			</staticText>
+			<textField evaluationTime="Auto">
+				<reportElement x="426" y="0" width="141" height="11" uuid="58b94bc7-307e-431c-81b1-9e2741818ffb">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{currPage} +"/" +$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="11" width="566" height="11" uuid="c3d60210-cce1-45ad-aad7-f37cca75075b">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<printWhenExpression><![CDATA[$P{reportid} != null]]></printWhenExpression>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportParameter name="report">
+					<subreportParameterExpression><![CDATA[$P{reportid} == "" ? "1" : $P{reportid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA["hdr/iso_001.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+</jasperReport>

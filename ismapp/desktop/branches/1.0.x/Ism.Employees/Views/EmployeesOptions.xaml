@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Ism.Employees.Views.EmployeesOptions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:Ism.Employees.Views"
+             xmlns:localrgn="clr-namespace:Ism.Employees"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converters="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             Style="{StaticResource ResourceKey=UcStyle}"
+             prism:ViewModelLocator.AutoWireViewModel="True"                          
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/WindowStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:SecurityScopeToVisibilityConverter x:Key="SecurityToVisbility"></converters:SecurityScopeToVisibilityConverter>
+        </ResourceDictionary>
+    </UserControl.Resources>    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <Button Command="{Binding EmployeesList}" Margin="1">Seznam</Button>
+            <Button Command="{Binding EmployeeAdd}" Margin="1">Nov</Button>
+            <Button Command="{Binding EmployeeEdit}" CommandParameter="{Binding CurrentEmployee}" Margin="1">Uredi</Button>
+            <!--<Button Command="{Binding EmployeeDelete}" CommandParameter="{Binding CurrentEmployee}" Visibility="{Binding Source={x:Null}, Converter={StaticResource ResourceKey=SecurityToVisbility}, ConverterParameter=employee.delete, Mode=OneWay}" Margin="1">Izbriši</Button>-->
+            <Button Command="{Binding DocumentsToExpire}" Margin="1">Dokumenti pred izekom</Button>
+            <!--<Button Command="{Binding WorkPlaceEdit}" Margin="1">Novo delovno mesto</Button>
+            <Button Command="{Binding WorkPlaces}" Margin="1">Novo delovno mesto</Button>-->
+        </StackPanel>
+        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static localrgn:RegionNames.ReportsRegion}"></ContentControl>
+    </Grid>
+</UserControl>

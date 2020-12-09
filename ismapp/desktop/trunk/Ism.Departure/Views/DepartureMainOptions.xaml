@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Ism.Departure.Views.DepartureMainOptions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Departure.Views"
+             xmlns:localrgn="clr-namespace:Ism.Departure"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converters="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:ui="clr-namespace:Ism.Infrastructure.Ui;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             xmlns:ctrl="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             prism:ViewModelLocator.AutoWireViewModel="True"    
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:SecurityScopeToVisibilityConverter x:Key="SecurityToVisbility"></converters:SecurityScopeToVisibilityConverter>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <i:Interaction.Triggers>
+            <prism:InteractionRequestTrigger SourceObject="{Binding OriginDestinationSelectRequest, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                <prism:PopupWindowAction IsModal="True" WindowStartupLocation="CenterOwner" WindowStyle="{StaticResource CustomWindowStyle}">
+                    <prism:PopupWindowAction.WindowContent>
+                        <local:OriginDestinationSelectList/>
+                    </prism:PopupWindowAction.WindowContent>
+                </prism:PopupWindowAction>
+            </prism:InteractionRequestTrigger>
+        </i:Interaction.Triggers>
+        
+        <StackPanel Orientation="Horizontal">
+        <Button Command="{Binding NavigateDeparturesCommand}" Visibility="{Binding Source={x:Null}, Converter={StaticResource ResourceKey=SecurityToVisbility}, ConverterParameter=departure, Mode=OneWay}">Odhodi</Button>
+        <!--<Button Command="{Binding NavigateArrivalsCommand}" Visibility="{Binding Source={x:Null}, Converter={StaticResource ResourceKey=SecurityToVisbility}, ConverterParameter=arrival, Mode=OneWay}">Prihodi</Button>-->
+        </StackPanel>
+    </Grid>
+</UserControl>

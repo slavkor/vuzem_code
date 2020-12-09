@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cer_var" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1110b381-e870-4e4c-a874-1077cb3f4d03">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "uniqueid",
+    "expression" : "uniqueid"
+  }, {
+    "name" : "lastname",
+    "expression" : "lastname"
+  }, {
+    "name" : "name",
+    "expression" : "name"
+  }, {
+    "name" : "document",
+    "expression" : "document"
+  }, {
+    "name" : "description",
+    "expression" : "description"
+  }, {
+    "name" : "documentnumber",
+    "expression" : "documentnumber"
+  }, {
+    "name" : "from",
+    "expression" : "from"
+  }, {
+    "name" : "to",
+    "expression" : "to"
+  }, {
+    "name" : "docdate",
+    "expression" : "docdate"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "api.ism/rpt/documents/list/e/CERT_VAR_?token=7fe11f108c46c374adf97c3ebb1f1e2b1a52bb72e1707aaf184256005a47d1adfcc9ffc7bf599bd7"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="uniqueid" class="java.lang.String"/>
+	<field name="lastname" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="document" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="documentnumber" class="java.lang.String"/>
+	<field name="from" class="java.lang.String"/>
+	<field name="to" class="java.lang.String"/>
+	<field name="docdate" class="java.lang.String"/>
+	<group name="emp">
+		<groupExpression><![CDATA[$F{uniqueid}]]></groupExpression>
+		<groupHeader>
+			<band height="36">
+				<textField>
+					<reportElement x="-20" y="0" width="100" height="14" uuid="7ff2db1c-e513-439b-be80-f61a0172a383"/>
+					<textFieldExpression><![CDATA[$F{lastname}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="80" y="0" width="100" height="14" uuid="bb991cd3-0673-4d1d-acf5-2ff61e152f05"/>
+					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="141" height="30" uuid="e4de7a5e-702c-425f-b190-03c004101461">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="10ed08d1-dd95-44e8-ad1c-93de9699526c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{document}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="138" height="30" uuid="1f963e3c-c451-41bc-95c8-76743e9d6202">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="75c26b1f-d260-40c2-b0d6-a51b0a609fc2"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="138" height="30" uuid="4888718c-2e75-48b1-b9a4-514fc95aface">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="37c73d34-0651-4dcc-9f85-dfa506a17c95"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{to}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="138" height="30" uuid="a368dfe6-37ec-49d3-80a0-7ac93195352f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="13ca53dc-6374-42b9-ae28-9813e45da704"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{docdate})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,211 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Ism.Infrastructure.Resources"
+                    xmlns:convertes="clr-namespace:Ism.Infrastructure.Converters"
+                    xmlns:telerikChartView="clr-namespace:Telerik.Windows.Controls.ChartView;assembly=Telerik.Windows.Controls.Chart"
+                    xmlns:timelines="clr-namespace:Telerik.Windows.Controls.Timeline;assembly=Telerik.Windows.Controls.DataVisualization">
+        <DataTemplate x:Key="SiteToolTipTemplate">
+        <Grid>
+            <Rectangle Margin="0" RadiusY="2" RadiusX="2" Fill="Wheat"/>
+            <StackPanel Orientation="Horizontal" Margin="8,8,8,12">
+                <TextBlock Text="{Binding EstimatedWorkers}" Foreground="Black" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text=" " Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Site.Customer.Name}" Foreground="Black" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text=" " Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Site.Name}" Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text=" " Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Name}" Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                
+                <!--<TextBlock FontFamily="Segoe UI" Text="Gradbišče "/>
+                <TextBlock FontFamily="Segoe UI" Text="{Binding ConstructionSite.Name}"/>
+                <TextBlock FontFamily="Segoe UI" Text=" za stranko "/>
+                <TextBlock FontFamily="Segoe UI" Text="{Binding ConstructionSite.Customer.Name}"/>-->
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PorjectToolTipTemplate">
+        <Grid>
+            <Rectangle Margin="0" RadiusY="2" RadiusX="2" Fill="Wheat" Opacity="0.7"/>
+            <StackPanel Orientation="Horizontal" Margin="8,8,8,12">
+                <TextBlock FontFamily="Segoe UI" Text="Projekt "/>
+                <TextBlock FontFamily="Segoe UI" Text="{Binding Name}"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="DefaultShiftDayTemplate">
+        <TextBlock Text="{Binding Text}" />
+    </DataTemplate>
+    
+    <DataTemplate  x:Key="ShiftDayTemplate">
+        <Grid>
+            <Path Data="M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z" Fill="Black" Opacity="0.3" Stretch="UniformToFill" />
+            <TextBlock Text="{Binding Text}" 
+                       Margin="0 6 0 0"
+                       Foreground="Black" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"/>
+        </Grid>
+    </DataTemplate>
+    <LinearGradientBrush x:Key="Timeline_TimelineItem_Fill" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#66FFFFFF" Offset="0"/>
+        <GradientStop Color="#B2A1A1A1" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="Timeline_TimelineItem_Stroke" Color="#CC636363"/>
+    <LinearGradientBrush x:Key="Timeline_TimelineItem_Fill_MouseOver" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#66FFFFFF" Offset="0"/>
+        <GradientStop Color="#B2A1A1A1" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="Timeline_TimelineItem_Stroke_MouseOver" Color="#CC909090"/>
+    <LinearGradientBrush x:Key="Timeline_TimelineItem_Fill_Pressed" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#E5FFFFFF" Offset="0"/>
+        <GradientStop Color="#66FFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="Timeline_TimelineItem_Stroke_Pressed" Color="#CC727272"/>
+    
+    <Style x:Key="SiteTimelineItemControlStyle" TargetType="timelines:TimelineItemControl">
+        <Style.Resources>
+            <convertes:ColorConverter x:Key="ColorConverter">
+            </convertes:ColorConverter>
+
+            <convertes:SolidColorBrushConverter x:Key="BrushConverter">
+            </convertes:SolidColorBrushConverter>
+        </Style.Resources>
+        <Setter Property="Height" Value="20"></Setter>
+        <Setter Property="BorderBrush" Value="{Binding DataItem.Site.Company.Color, Converter={StaticResource BrushConverter}}"/>
+        <Setter Property="Margin" Value="0 5 0 0"/>
+        <Setter Property="Background" Value="{Binding DataItem.Site.Company.Color, Converter={StaticResource BrushConverter}}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="timelines:TimelineItemControl">
+                    <ControlTemplate.Resources>
+                        <convertes:ColorConverter x:Key="ColorConverter">
+                        </convertes:ColorConverter>
+                    </ControlTemplate.Resources>
+                    <Border Background="#01FFFFFF">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="timelineItem" Storyboard.TargetProperty="Fill" Duration="0.00:00:00.05">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Timeline_TimelineItem_Fill_MouseOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="timelineItem" Storyboard.TargetProperty="Stroke" Duration="0.00:00:00.05">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Timeline_TimelineItem_Stroke_MouseOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="timelineItem" Storyboard.TargetProperty="Fill" Duration="0.00:00:00.05">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Timeline_TimelineItem_Fill_Pressed}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="timelineItem" Storyboard.TargetProperty="Stroke" Duration="0.00:00:00.05">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Timeline_TimelineItem_Stroke_Pressed}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid Background="{Binding DataItem.Site.Company.Color, Converter={StaticResource BrushConverter}}" >
+                            <Rectangle x:Name="timelineItem" Fill="{Binding DataItem.Site.Company.Color, Converter={StaticResource BrushConverter}}" Stroke="{Binding DataItem.Site.Company.Color, Converter={StaticResource BrushConverter}}" Stretch="Fill"/>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <TextBlock Text="{Binding DataItem.EstimatedWorkers}" Foreground="Black" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text=" " Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding DataItem.Site.Customer.Name}" Foreground="Black" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text=" " Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding DataItem.Site.Name}" Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text=" " Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding DataItem.Name}" Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ProjectTimelineItemControlStyle" TargetType="timelines:TimelineItemControl">
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Timeline_TimelineItem_Stroke}"/>
+        <Setter Property="Margin" Value="0 5 0 0"/>
+        <Setter Property="Background" Value="{StaticResource Timeline_TimelineItem_Fill}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="timelines:TimelineItemControl">
+                    <Border Background="#01FFFFFF" Height="20">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="timelineItem" Storyboard.TargetProperty="Fill" Duration="0.00:00:00.05">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Timeline_TimelineItem_Fill_MouseOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="timelineItem" Storyboard.TargetProperty="Stroke" Duration="0.00:00:00.05">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Timeline_TimelineItem_Stroke_MouseOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="timelineItem" Storyboard.TargetProperty="Fill" Duration="0.00:00:00.05">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Timeline_TimelineItem_Fill_Pressed}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="timelineItem" Storyboard.TargetProperty="Stroke" Duration="0.00:00:00.05">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Timeline_TimelineItem_Stroke_Pressed}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid Height="20">
+                            <Rectangle Height="20" x:Name="timelineItem" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" Stretch="Fill"/>
+                            <TextBlock Text="{Binding DataItem.Name}" Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="Site_Default">
+        <timelines:TimelineItemControl/>
+    </DataTemplate>
+    <DataTemplate x:Key="Site_Custom">
+        <timelines:TimelineItemControl Style="{StaticResource SiteTimelineItemControlStyle}"/>
+    </DataTemplate>
+    <DataTemplate x:Key="Project_Custom">
+        <timelines:TimelineItemControl Style="{StaticResource ProjectTimelineItemControlStyle}"/>
+    </DataTemplate>
+
+
+    <!--<Style x:Key="ChartSeriesStyle" TargetType="telerikChartView:ChartSeries">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="telerikChartView:ChartSeries">
+                    <Canvas x:Name="renderSurface" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BarSeriesStyle" TargetType="telerikChartView:BarSeries" BasedOn="{StaticResource ChartSeriesStyle}">
+        <Setter Property="TrackBallTemplate" Value="{StaticResource TrackBallDataTemplate}"/>
+        <Setter Property="DefaultVisualStyle">
+            <Setter.Value>
+                <Style TargetType="Border">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{StaticResource AccentColor}"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" Value="{StaticResource StrokeBrush}"/>
+                    <Setter Property="BorderThickness" Value="{StaticResource BarSeriesStrokeThickness}"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CombineMode" Value="Cluster"/>
+    </Style>-->    
+</ResourceDictionary>

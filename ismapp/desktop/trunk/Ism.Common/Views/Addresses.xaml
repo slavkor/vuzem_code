@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Ism.Common.Views.Addresses"             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Common.Views"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converters="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:ui="clr-namespace:Ism.Infrastructure.Ui;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             xmlns:ctrl="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"             
+             prism:ViewModelLocator.AutoWireViewModel="True"    
+             Style="{StaticResource ResourceKey=UcStyle}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="1">
+            <Button DockPanel.Dock="Left" Command="{Binding AddressCommand}" CommandParameter ="{x:Null}">Dodaj naslov</Button>
+            <Button DockPanel.Dock="Left" Command="{Binding AddressCommandEdit}" CommandParameter ="{Binding SelectedItem, ElementName=list}">Uredi naslov</Button>
+            <Button DockPanel.Dock="Left" Command="{Binding AddressCommandDelete}" CommandParameter ="{Binding SelectedItem, ElementName=list}">Briši naslov</Button>
+        </StackPanel>
+        <telerik:RadGridView Grid.Row="1" ItemsSource="{Binding AddressList}" AutoGenerateColumns="False" FilteringMode="FilterRow" x:Name="list" SelectedItem="{Binding SelectedAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowGroupPanel="False">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="Tip"  DataMemberBinding="{Binding Type}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Naslov" DataMemberBinding="{Binding PrettyPrint}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+            <telerik:EventToCommandBehavior.EventBindings>
+                <telerik:EventBinding  Command="{Binding AddressCommandEdit}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+            </telerik:EventToCommandBehavior.EventBindings>
+        </telerik:RadGridView>
+        
+        <!--<xcdg:DataGridControl Name="AddressList" Grid.Row="1" ItemsSource="{Binding AddressList}" AutoCreateColumns="False" SelectedItem="{Binding SelectedAddress}" BorderThickness="0" ReadOnly="True" AllowDrag="True">
+            <xcdg:DataGridControl.View>
+                <xcdg:TableflowView UseDefaultHeadersFooters="False">
+                    <xcdg:TableflowView.FixedHeaders>
+                        <DataTemplate>
+                            <xcdg:ColumnManagerRow />
+                        </DataTemplate>
+                    </xcdg:TableflowView.FixedHeaders>
+                </xcdg:TableflowView>
+            </xcdg:DataGridControl.View>
+            <xcdg:DataGridControl.Columns>
+                <xcdg:Column FieldName="Type" Title="Tip" />
+                <xcdg:Column FieldName="PrettyPrint" Title="Naslov" />
+
+                --><!--<xcdg:Column FieldName="Line1" Title="Naslov" />
+                        <xcdg:Column FieldName="Line2" Title="Naslov" />
+                        <xcdg:Column FieldName="State" Title="Mesto"  />
+                        <xcdg:Column FieldName="Zip" Title="Poštna št." />
+                        <xcdg:Column FieldName="City" Title="Pošta" />
+                        <xcdg:Column FieldName="County" Title="Država" />--><!--
+            </xcdg:DataGridControl.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding AddressCommandEdit}" CommandParameter ="{Binding SelectedItem, ElementName=AddressList}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>            
+        </xcdg:DataGridControl>-->
+    </Grid>
+</UserControl>

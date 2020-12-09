@@ -1,0 +1,180 @@
+﻿<UserControl x:Class="Ism.Departure.Views.DepartureList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Departure.Views"
+             xmlns:localrgn="clr-namespace:Ism.Departure"
+             xmlns:model="clr-namespace:Ism.Infrastructure.Model;assembly=Ism.Infrastructure"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:ui="clr-namespace:Ism.Infrastructure.Ui;assembly=Ism.Infrastructure"
+             xmlns:datafilter="clr-namespace:Telerik.Windows.Controls.Data.DataFilter;assembly=Telerik.Windows.Controls.Data"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             prism:ViewModelLocator.AutoWireViewModel="True"             
+             x:Name="departuresControl"
+             Style="{StaticResource ResourceKey=UcStyle}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseTextBoxStyle.xaml"></ResourceDictionary>
+
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/Departures.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="WS" TargetType="{x:Type Window}" BasedOn="{StaticResource CustomWindowStyle}">
+                <Setter Property="MaxWidth" Value="400"></Setter>
+                <Setter Property="MaxHeight" Value="400"></Setter>
+            </Style>
+
+
+            <DataTemplate x:Key="od_def">
+                <Grid Background="Yellow"></Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="od_o">
+                <Grid Background="Green"></Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="od_d">
+                <Grid Background="Blue"></Grid>
+            </DataTemplate>
+            <ui:DepartureTemplateSelector x:Key="departure_templates"
+                                          DefaultTemplate="{StaticResource Departure_Default}"
+                                          DepartureInboudConfirmedTemplate="{StaticResource Departure_Inboud_Confirmed}"
+                                          DepartureOutboudConfirmedTemplate="{StaticResource Departure_Outboud_Confirmed}"
+                                          DepartureInboudInProgressTemplate="{StaticResource Departure_Inboud_InProgress}"
+                                          DepartureOutboudInProgressTemplate="{StaticResource Departure_Outboud_InProgress}"
+                                          DepartureInternalTemplate="{StaticResource Departure_Internal}">
+            </ui:DepartureTemplateSelector>
+
+            <ui:OriginDepartureTemplateSelector x:Key="od_templates"
+                                                DefaultTemplate="{StaticResource od_def}"
+                                                OriginTemplate="{StaticResource od_o}"
+                                                DestinationTemplace="{StaticResource od_d}">
+            </ui:OriginDepartureTemplateSelector>
+            
+            
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" LastChildFill="True" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <telerik:RadCalendar Grid.Row="0"
+                                     Grid.Column="0"
+                                     SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     SelectionMode="Single"
+                                     DateSelectionMode="Month"
+                                     VerticalAlignment="Top"/>
+               
+
+                <!--<telerik:RadTreeView Name="tree" Grid.Row="1" ItemsSource="{Binding Projects}">
+                    <telerik:EventToCommandBehavior.EventBindings>
+                        <telerik:EventBinding  Command="{Binding SelectionChangedCommand}" EventName="SelectionChanged"  CommandParameter="{Binding ElementName=tree, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+                    </telerik:EventToCommandBehavior.EventBindings>
+                </telerik:RadTreeView>-->
+
+                <telerik:RadDataFilter Grid.Row="1" Grid.Column="0" x:Name="radDataFilter" Source="{Binding Departures}" AutoGenerateItemPropertyDefinitions="False">
+                    <telerik:RadDataFilter.ItemPropertyDefinitions>
+                        <datafilter:ItemPropertyDefinition PropertyName="Origin" PropertyType="{x:Type system:String}" DisplayName="Start" />
+                        <datafilter:ItemPropertyDefinition PropertyName="Destination" PropertyType="{x:Type system:String}" DisplayName="Cilj" />
+
+                        <datafilter:ItemPropertyDefinition PropertyName="Crs" PropertyType="{x:Type system:String}" DisplayName="Avtomobil" />
+                        <datafilter:ItemPropertyDefinition PropertyName="Emps" PropertyType="{x:Type system:String}" DisplayName="Zaposleni" />
+                    </telerik:RadDataFilter.ItemPropertyDefinitions>
+                </telerik:RadDataFilter>
+                <GridSplitter Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Stretch"  Width="5" Background="Gray"/>
+                <telerik:RadTimeline x:Name="list" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                                 PeriodStart="{Binding Start}" 
+                                 PeriodEnd="{Binding End}" 
+                                 VisiblePeriodStart="{Binding VisibleStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 VisiblePeriodEnd="{Binding VisibleEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 ItemsSource="{Binding ElementName=radDataFilter, Path=FilteredSource}" 
+                                 StartPath="Departure.DepartDate"
+                                 SelectionMode="Single"
+                                 SelectedItem="{Binding CurrentSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 IsSelectionEnabled="True"
+                                 ToolTipTemplate="{StaticResource ToolTipTemplate}"
+                                 ItemTemplateSelector="{StaticResource departure_templates}"
+                                 ScrollMode="ScrollAndZoom"
+                                 VerticalContentAlignment="Top"
+                                 VerticalScrollBarVisibility="Auto">
+                    <telerik:RadTimeline.Intervals>
+                        <telerik:YearInterval/>
+                        <telerik:MonthInterval/>
+                        <telerik:WeekInterval />
+                        <telerik:DayInterval/>
+                    </telerik:RadTimeline.Intervals>
+                    <telerik:EventToCommandBehavior.EventBindings>
+                        <telerik:EventBinding  Command="{Binding EditDepartureCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+                    </telerik:EventToCommandBehavior.EventBindings>
+                </telerik:RadTimeline>
+            </Grid>
+                
+        </DockPanel>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"  Height="5" Background="Gray"/>
+        <Grid Grid.Row="2">
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0">
+                <!--<telerik:RadTileList ItemsSource="{Binding OriginiDeparture}" ItemTemplateSelector="{StaticResource od_templates}">
+                </telerik:RadTileList>-->
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                
+
+                <StackPanel Grid.Row="0" Margin="5">
+                    <TextBlock> Start </TextBlock>
+                    <TextBlock Text="{Binding CurrentSelected.Departure.Origin.PointName}"/>
+                    <TextBlock Text="{Binding CurrentSelected.Departure.Origin.Address.PrettyPrint}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1"  Margin="5">
+                    <TextBlock> Cilj </TextBlock>
+                    <TextBlock Text="{Binding CurrentSelected.Departure.Destination.PointName}"/>
+                    <TextBlock Text="{Binding CurrentSelected.Departure.Destination.Address.PrettyPrint}"/>
+                </StackPanel>
+            </Grid>
+            <telerik:RadGridView  Grid.Column="1" ItemsSource="{Binding CurrentSelected.Cars}"  AutoGenerateColumns="False" FilteringMode="FilterRow" x:Name="carlist" ShowGroupPanel="False">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="Registracija"  DataMemberBinding="{Binding Registration}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Znamka"  DataMemberBinding="{Binding Make}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Model"  DataMemberBinding="{Binding Model}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            
+            <telerik:RadGridView Grid.Column="2"  ItemsSource="{Binding CurrentSelected.Employees}"  AutoGenerateColumns="False" FilteringMode="FilterRow" x:Name="elist" ShowGroupPanel="False" SelectionMode="Extended" >
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="Priimek"  DataMemberBinding="{Binding LastName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Ime"  DataMemberBinding="{Binding Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+    </Grid>
+</UserControl>

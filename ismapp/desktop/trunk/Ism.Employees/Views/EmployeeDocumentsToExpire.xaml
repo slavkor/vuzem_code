@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="Ism.Employees.Views.EmployeeDocumentsToExpire"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Employees.Views"
+             xmlns:ext="clr-namespace:Ism.Infrastructure.Extensions;assembly=Ism.Infrastructure"
+             xmlns:ctrl="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:converters="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Style="{StaticResource ResourceKey=UcStyle}"
+             mc:Ignorable="d" 
+             d:DesignHeight="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:ValidToBooleanConverter x:Key="ValidToBooleanConverter"/>
+            <system:Int32 x:Key="30">30</system:Int32>
+            <system:Int32 x:Key="15">15</system:Int32>
+            <system:Int32 x:Key="5">5</system:Int32>
+            <system:Int32 x:Key="0">0</system:Int32>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ctrl:LayoutGroup Grid.Row="0">
+                <ctrl:LabeledDatePicker Label="Datum od" DateValue="{Binding DateFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ctrl:LabeledDatePicker>
+                <ctrl:LabeledDatePicker Label="Datum do" DateValue="{Binding DateTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ctrl:LabeledDatePicker>
+            </ctrl:LayoutGroup>
+            <Button Grid.Row="1" Command="{Binding RefreshDocumentsCommand}">Osveži podatke</Button>
+        </Grid>
+        
+        <telerik:RadGridView 
+            Grid.Row="1"
+            CanUserSearchInHiddenColumns ="True"
+                              ItemsSource="{Binding Documents}"  
+                              AutoGenerateColumns="False"                               
+                              ShowSearchPanel="True" 
+                              x:Name="list"
+                              ShowGroupPanel="False" 
+                              ShowColumnFooters="True">
+
+            <telerik:RadGridView.RowStyle>
+                <Style TargetType="telerik:GridViewRow">
+                    <Style.Triggers>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource ValidToBooleanConverter}">
+                                    <Binding RelativeSource="{RelativeSource self}" Path="DataContext.Day.Date"></Binding>
+                                    <Binding Source="{StaticResource 0}"></Binding>
+                                    <Binding Source="{StaticResource 5}"></Binding>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="Background" Value="Salmon"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource ValidToBooleanConverter}">
+                                    <Binding RelativeSource="{RelativeSource self}" Path="DataContext.Day.Date"></Binding>
+                                    <Binding Source="{StaticResource 5}"></Binding>
+                                    <Binding Source="{StaticResource 15}"></Binding>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="Background" Value="LightSalmon"></Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource ValidToBooleanConverter}">
+                                    <Binding RelativeSource="{RelativeSource self}" Path="DataContext.Day.Date"></Binding>
+                                    <Binding Source="{StaticResource 15}"></Binding>
+                                    <Binding Source="{StaticResource 30}"></Binding>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="Background" Value="LightGoldenrodYellow"></Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource ValidToBooleanConverter}">
+                                    <Binding RelativeSource="{RelativeSource self}" Path="DataContext.Day.Date"></Binding>
+                                    <Binding Source="{x:Null}"></Binding>
+                                    <Binding Source="{StaticResource 0}"></Binding>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="Background" Value="Red"></Setter>
+                        </DataTrigger>
+
+                    </Style.Triggers>
+                </Style>
+            </telerik:RadGridView.RowStyle>
+            <telerik:RadGridView.Columns>
+            
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Employee.Name}" Header="Ime" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Employee.LastName}" Header="Priimek" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Document.Name}" Header="Dokument" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Type.Name}" Header="Tip" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Day.Date}" Header="Poteče"   DataFormatString="dd.MM.yyyy"/>
+
+            </telerik:RadGridView.Columns>
+            <!--<telerik:EventToCommandBehavior.EventBindings>
+                <telerik:EventBinding  Command="{Binding DoubleClickCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+            </telerik:EventToCommandBehavior.EventBindings>-->
+        </telerik:RadGridView>
+        
+    </Grid>
+</UserControl>

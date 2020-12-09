@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Ism.Security.Views.UsersList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Security.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:controls="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             prism:ViewModelLocator.AutoWireViewModel="True"                
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid >
+        <i:Interaction.Triggers>
+            <prism:InteractionRequestTrigger SourceObject="{Binding UserEditInteractionRequest, Mode=OneWay}" >
+                <prism:PopupWindowAction IsModal="True" WindowStartupLocation="CenterOwner" WindowStyle="{StaticResource CustomWindowStyle}">
+                    <prism:PopupWindowAction.WindowContent>
+                        <local:UserEdit />
+                    </prism:PopupWindowAction.WindowContent>
+                </prism:PopupWindowAction>
+            </prism:InteractionRequestTrigger>
+            <prism:InteractionRequestTrigger SourceObject="{Binding CompanyEditRequest, Mode=OneWay}" >
+                <prism:PopupWindowAction IsModal="True" WindowStartupLocation="CenterOwner" WindowStyle="{StaticResource CustomWindowStyle}">
+                    <prism:PopupWindowAction.WindowContent>
+                        <local:CompanyEdit />
+                    </prism:PopupWindowAction.WindowContent>
+                </prism:PopupWindowAction>
+            </prism:InteractionRequestTrigger>            
+        </i:Interaction.Triggers>        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="Dodaj uporabnika" Command="{Binding AddUserCommand}"></Button>
+            <Button Content="Uredi uporabnika" Command="{Binding EditUserCommand}" CommandParameter="{Binding SelectedUser}"></Button>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding UserName}" Header="Uporabniško ime"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ContentControl Grid.Column="1" prism:RegionManager.RegionName="CompaniesRegion">
+                
+            </ContentControl>
+            <!--<ListView Grid.Column="1" ItemsSource="{Binding Companies}" SelectedItem="{Binding SelectedCompany}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Polni naziv"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding ShortName}" Header="Kratki naziv"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding RegistrationNumber}" Header="Matična številka"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding TaxNumber}" Header="Davčna številka"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>-->            
+        </Grid>
+    </Grid>
+</UserControl>

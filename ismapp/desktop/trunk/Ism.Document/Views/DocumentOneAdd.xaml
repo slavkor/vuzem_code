@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Ism.Document.Views.DocumentOneAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converter="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:local="clr-namespace:Ism.Document.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:controls="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             Style="{StaticResource ResourceKey=UcStyle}"
+             prism:ViewModelLocator.AutoWireViewModel="True"                
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/WindowStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVis"></BooleanToVisibilityConverter>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <telerik:RadListBox ItemsSource="{Binding Files}">
+        </telerik:RadListBox>
+    </Grid>
+</UserControl>
+
+
+
+
+
+
+

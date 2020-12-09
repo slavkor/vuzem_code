@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Ism.Departure.Views.Departures"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Departure.Views"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:model="clr-namespace:Ism.Infrastructure.Model;assembly=Ism.Infrastructure"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             x:Name="departuresControl"
+            
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseTextBoxStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="WS" TargetType="{x:Type Window}" BasedOn="{StaticResource CustomWindowStyle}">
+                <Setter Property="MaxWidth" Value="400"></Setter>
+                <Setter Property="MaxHeight" Value="400"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition  Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static inf:RegionNames.DepartureOptRegion}"/>
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static inf:RegionNames.DepartureRegion}"/>
+    </Grid>
+</UserControl>

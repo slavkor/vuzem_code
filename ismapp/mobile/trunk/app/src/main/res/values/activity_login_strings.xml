@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_progress_signing_in">Singing in...</string>
+    <string name="prompt_user">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Sing In</string>
+    <string name="action_sign_in_register">Sing In</string>
+    <string name="action_forgot_password">Recover password</string>
+
+</resources>

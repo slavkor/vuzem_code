@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:title="Domov"/>
+
+    <!--
+        <item
+        android:id="@+id/profileFragment"
+        android:title="Profile"/>
+        -->
+
+    <item
+        android:id="@+id/attendenceFragment"
+        android:title="Prisotnost"/>
+
+    <item
+        android:id="@+id/ewrFragment"
+        android:title="EWR"/>
+
+
+</menu>

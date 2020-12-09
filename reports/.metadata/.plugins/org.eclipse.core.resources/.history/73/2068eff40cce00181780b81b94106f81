@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="csite_list_emp_001" pageWidth="453" pageHeight="842" columnWidth="453" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8a072243-9951-4b32-8eb1-843b477659db">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<style name="Style1" backcolor=$F{color}/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<parameter name="site" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "name",
+    "expression" : "name"
+  }, {
+    "name" : "lastname",
+    "expression" : "lastname"
+  }, {
+    "name" : "from",
+    "expression" : "lastoccupancy.start.strrep"
+  }, {
+    "name" : "loaner",
+    "expression" : "loaner.name"
+  }, {
+    "name" : "color",
+    "expression" : "workperiod.company.color"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "$P{url}/rpt/csite/$P{site}/employee/list?token=$P{token}"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="name" class="java.lang.String"/>
+	<field name="lastname" class="java.lang.String"/>
+	<field name="from" class="java.lang.String"/>
+	<field name="loaner" class="java.lang.String"/>
+	<field name="color" class="java.lang.String"/>
+	<sortField name="from"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="99" y="0" width="80" height="14" uuid="699d5fb1-6d6d-4df2-a29a-b800cd65bcf8">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="99" height="14" uuid="d6212610-404d-42c9-8e79-69af6e43b28f">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lastname}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd.MM.yyyy" isBlankWhenNull="true">
+				<reportElement x="290" y="0" width="80" height="14" uuid="fe423780-137e-4835-96b8-0bbc648cb499">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{from})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="179" y="0" width="111" height="14" uuid="8124604a-c4c7-4870-b844-96557e22acb5">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{loaner}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="83" height="14" uuid="0079b8a2-caf6-4a15-95d0-69e553eaffeb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new Date().getTime()-new SimpleDateFormat("yyyyMMdd").parse($F{from}).getTime())/(1000*60*60*24)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

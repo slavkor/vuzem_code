@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="iso_001" pageWidth="212" pageHeight="842" columnWidth="212" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b7f8f18a-df08-498d-bb34-dfc5c4b1f4a6">
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<parameter name="report" class="java.lang.String">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "isoid",
+    "expression" : "isoid"
+  }, {
+    "name" : "isodate",
+    "expression" : ""
+  }, {
+    "name" : "isorev",
+    "expression" : "isorev"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "isodate",
+    "baseUrl" : "$P{url}/rpt/iso/$P{report}?token=$P{token}"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="isoid" class="java.lang.String"/>
+	<field name="isodate" class="java.lang.String"/>
+	<field name="isorev" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="11" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<printWhenExpression><![CDATA[$F{isoid} != null && $F{isodate} != null && $F{isorev} != null ]]></printWhenExpression>
+			<textField>
+				<reportElement x="0" y="0" width="70" height="11" uuid="fe2ce4fd-4ea8-4f6b-8a34-5a352bc45742">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{isoid}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd.MM.yyyy">
+				<reportElement x="140" y="0" width="70" height="11" uuid="ea1d3fcb-ecba-4e61-9d9f-a0682743fe7f">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{isodate})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="70" height="11" uuid="beda9b9b-31fc-4dd7-bbfc-e7ac795907a5">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{isorev}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

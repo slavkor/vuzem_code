@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Ism.Construction.Views.EwrList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Construction.Views"
+             xmlns:localrgn="clr-namespace:Ism.Construction"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converters="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             xmlns:ctrl="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:converter="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Style="{StaticResource UcStyle}"             
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/Grid.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <converter:DayModelToDateTimeConverter x:Key="DayToDateTime"></converter:DayModelToDateTimeConverter>
+
+            <converter:SolidColorBrushConverter x:Key="BrushConverter"></converter:SolidColorBrushConverter>
+            <converter:RangeSliderConverter x:Key="RangeSliderConverte"></converter:RangeSliderConverter>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid >
+        <telerik:RadGridView  ItemsSource="{Binding Ewrs}"  AutoGenerateColumns="False" FilteringMode="FilterRow" x:Name="list" SelectedItem="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowGroupPanel="False" ShowColumnFooters="True">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="Številka"  DataMemberBinding="{Binding Number}" IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.AggregateFunctions>
+                        <telerik:CountFunction Caption="Število Ewr: " />
+                    </telerik:GridViewDataColumn.AggregateFunctions>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Datum"  DataMemberBinding="{Binding Date}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                <telerik:GridViewDataColumn Header="Število ur"  DataMemberBinding="{Binding Hours}" IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.AggregateFunctions>
+                        <telerik:SumFunction Caption="Skupaj ur: " />
+                    </telerik:GridViewDataColumn.AggregateFunctions>
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Stroški materiala"  DataMemberBinding="{Binding MaterialCosts}" IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.AggregateFunctions>
+                        <telerik:SumFunction Caption="Skupaj material: " />
+                    </telerik:GridViewDataColumn.AggregateFunctions>
+                </telerik:GridViewDataColumn>                
+                <telerik:GridViewDataColumn Header="Opis"  DataMemberBinding="{Binding Description}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+
+            </telerik:RadGridView.Columns>
+            <telerik:EventToCommandBehavior.EventBindings>
+                <telerik:EventBinding  Command="{Binding DoubleClickCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+            </telerik:EventToCommandBehavior.EventBindings>
+        </telerik:RadGridView>
+
+    </Grid>
+</UserControl>

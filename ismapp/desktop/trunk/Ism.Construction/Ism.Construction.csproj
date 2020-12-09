@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{95E6F6E1-AD0A-47CE-B4DD-D825AB36F09E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ism.Construction</RootNamespace>
+    <AssemblyName>Ism.Construction</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GongSolutions.Wpf.DragDrop">
+      <HintPath>..\Lib\GongSolutions.Wpf.DragDrop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter, Version=3.1.1.0, Culture=neutral, PublicKeyToken=c7694541b0ac80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ValueInjecter.3.1.1.5\lib\net40\Omu.ValueInjecter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Unity.6.3.0\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.FixedDocumentViewers">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.FixedDocumentViewers.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.FixedDocumentViewersUI">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.FixedDocumentViewersUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GanttView">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.GanttView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView.Export">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.GridView.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Scheduling.Core">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Scheduling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF45\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="TimeLineTool">
+      <HintPath>..\Lib\TimeLineTool.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConstructionModule.cs" />
+    <Compile Include="Events\ConstructionSiteSelectEvent.cs" />
+    <Compile Include="Events\ConstructionSitesListStatsEvent.cs" />
+    <Compile Include="Events\ConstructionSitesListStatsEventArgs.cs" />
+    <Compile Include="Events\DateSelectedEvent.cs" />
+    <Compile Include="Events\NavigateBpEvent.cs" />
+    <Compile Include="Events\ProjectSelectEvent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegionNames.cs" />
+    <Compile Include="ViewModels\ConstructionSiteEditViewModel.cs" />
+    <Compile Include="ViewModels\ConstructionSiteEmployeesViewModel.cs" />
+    <Compile Include="ViewModels\ConstructionSiteOptViewModel.cs" />
+    <Compile Include="ViewModels\ConstructionSitesListStatsViewModel.cs" />
+    <Compile Include="ViewModels\ConstructionSitesListViewModel.cs" />
+    <Compile Include="ViewModels\ConstructionSitesViewModel.cs" />
+    <Compile Include="ViewModels\DepartturesArrivalsViewModel.cs" />
+    <Compile Include="ViewModels\EditProjectWorkPeriodViewModel.cs" />
+    <Compile Include="ViewModels\EwrEditViewModel.cs" />
+    <Compile Include="ViewModels\EwrListViewModel.cs" />
+    <Compile Include="ViewModels\EwrOptionsViewModel.cs" />
+    <Compile Include="ViewModels\EwrViewModel.cs" />
+    <Compile Include="ViewModels\ExtraWorkRequestsViewModel.cs" />
+    <Compile Include="ViewModels\ForemanCounstructionSiteViewModel.cs" />
+    <Compile Include="ViewModels\ForemanOptionsViewModel.cs" />
+    <Compile Include="ViewModels\ForemanProjectsViewModel.cs" />
+    <Compile Include="ViewModels\NavConstructionViewModel.cs" />
+    <Compile Include="ViewModels\ProjectEditViewModel.cs" />
+    <Compile Include="ViewModels\ProjectSelectListViewModel.cs" />
+    <Compile Include="ViewModels\ProjectsViewModel.cs" />
+    <Compile Include="ViewModels\WorkingHoursViewModel.cs" />
+    <Compile Include="Views\ConstructionSiteEdit.xaml.cs">
+      <DependentUpon>ConstructionSiteEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConstructionSiteEmployeesView.xaml.cs">
+      <DependentUpon>ConstructionSiteEmployeesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConstructionSiteOpt.xaml.cs">
+      <DependentUpon>ConstructionSiteOpt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConstructionSitesList.xaml.cs">
+      <DependentUpon>ConstructionSitesList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConstructionSitesListStats.xaml.cs">
+      <DependentUpon>ConstructionSitesListStats.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConstructionSitesView.xaml.cs">
+      <DependentUpon>ConstructionSitesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DepartturesArrivals.xaml.cs">
+      <DependentUpon>DepartturesArrivals.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProjectWorkPeriod.xaml.cs">
+      <DependentUpon>EditProjectWorkPeriod.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ewr.xaml.cs">
+      <DependentUpon>Ewr.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EwrEdit.xaml.cs">
+      <DependentUpon>EwrEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EwrList.xaml.cs">
+      <DependentUpon>EwrList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EwrOptions.xaml.cs">
+      <DependentUpon>EwrOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForemanCounstructionSite.xaml.cs">
+      <DependentUpon>ForemanCounstructionSite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForemanOptions.xaml.cs">
+      <DependentUpon>ForemanOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForemanProjects.xaml.cs">
+      <DependentUpon>ForemanProjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NavConstruction.xaml.cs">
+      <DependentUpon>NavConstruction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectEditView.xaml.cs">
+      <DependentUpon>ProjectEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projects.xaml.cs">
+      <DependentUpon>Projects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectSelectList.xaml.cs">
+      <DependentUpon>ProjectSelectList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorkingHours.xaml.cs">
+      <DependentUpon>WorkingHours.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Ism.Controls\Ism.Controls.csproj">
+      <Project>{45967a29-b930-47fb-a361-362528cf4a7d}</Project>
+      <Name>Ism.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ism.Infrastructure\Ism.Infrastructure.csproj">
+      <Project>{d4ab7808-1fbb-43e9-8c62-24e5329ea0a1}</Project>
+      <Name>Ism.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ConstructionSiteEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConstructionSiteEmployeesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConstructionSiteOpt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConstructionSitesList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConstructionSitesListStats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConstructionSitesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DepartturesArrivals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditProjectWorkPeriod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ewr.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EwrEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EwrList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EwrOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ForemanCounstructionSite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ForemanOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ForemanProjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NavConstruction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Projects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectSelectList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorkingHours.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(TargetPath) $(SolutionDir)Modules
+copy $(TargetPath) $(SolutionDir)Ism\Modules</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

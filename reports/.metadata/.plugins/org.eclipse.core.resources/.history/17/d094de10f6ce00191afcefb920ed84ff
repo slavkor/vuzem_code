@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_list_018c" pageWidth="198" pageHeight="842" columnWidth="198" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c0318d9d-eb3c-4b50-8524-cafdf11222a4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "sitename",
+    "expression" : "sitename"
+  }, {
+    "name" : "lastname",
+    "expression" : "lastname"
+  }, {
+    "name" : "employeename",
+    "expression" : "employeename"
+  }, {
+    "name" : "departtime",
+    "expression" : "departures.departtime"
+  }, {
+    "name" : "origin",
+    "expression" : "departures.origin"
+  }, {
+    "name" : "destination",
+    "expression" : "departures.destination"
+  } ],
+  "options" : {
+    "contentType" : "application/xml",
+    "rootPath" : "",
+    "baseUrl" : "$P{url}/rpt/departures/listpladed?token=$P{token}"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="sitename" class="java.lang.String"/>
+	<field name="lastname" class="java.lang.String"/>
+	<field name="employeename" class="java.lang.String"/>
+	<field name="departtime" class="java.lang.String"/>
+	<field name="origin" class="java.lang.String"/>
+	<field name="destination" class="java.lang.String"/>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+</jasperReport>

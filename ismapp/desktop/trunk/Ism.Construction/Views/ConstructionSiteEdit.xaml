@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Ism.Construction.Views.ConstructionSiteEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Construction.Views"
+             xmlns:localrgn="clr-namespace:Ism.Construction"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converters="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             xmlns:ctrl="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:xct="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:tm="clr-namespace:TimeLineTool;assembly=TimeLineTool"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Style="{StaticResource UcStyle}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseTextBoxStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <system:Boolean x:Key="True">True</system:Boolean>
+            <system:Boolean x:Key="False">False</system:Boolean>
+            <Color R="255"
+                   G="255"
+                   B="255"
+                   A="180"
+                   x:Key="BgColor" />
+            <SolidColorBrush Color="{StaticResource BgColor}" x:Key="BgBrush" />
+            <converters:DayModelToDateTimeConverter x:Key="DayToDateTime"></converters:DayModelToDateTimeConverter>
+            <converters:ColorConverter x:Key="ColorConverter"></converters:ColorConverter>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    
+    <Grid>
+      
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ctrl:LayoutGroup Grid.Row="0">
+            <ctrl:LabelledTextBox Label="Naziv" Text="{Binding ConstructionSite.Name}"></ctrl:LabelledTextBox>
+            <ctrl:LabelledTextBox Label="Opis" Text="{Binding ConstructionSite.Description}"></ctrl:LabelledTextBox>
+        </ctrl:LayoutGroup>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--<telerik:RadColorSelector Grid.Column="0"  MaxHeight="200" SelectedColor="{Binding ConstructionSite.Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ColorConverter}}"></telerik:RadColorSelector>-->
+            <!--<xct:ColorCanvas Grid.Column="0" SelectedColor="{Binding ConstructionSite.Color, Converter={StaticResource ColorConverter}}"></xct:ColorCanvas>-->
+            <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static localrgn:RegionNames.CsiteBpRegion}"></ContentControl>
+            <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static localrgn:RegionNames.CDocumentsRegion}"></ContentControl>
+            <ContentControl Grid.Column="2" prism:RegionManager.RegionName="{x:Static localrgn:RegionNames.CContactsRegion}"></ContentControl>
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <ContentControl Grid.Column="2" prism:RegionManager.RegionName="{x:Static localrgn:RegionNames.CProjectsRegion}" ></ContentControl>
+        </Grid>
+        
+        <DockPanel Grid.Row="3"  Grid.Column="0" LastChildFill="False">
+            <Button DockPanel.Dock="Left" Content="Prekliči" Command="{Binding CancelCommand}" ></Button>
+            <Button DockPanel.Dock="Left" Content="Ure in dodatna dela" Command="{Binding WorkHoursAndEwrCommand}" ></Button>
+            <Button DockPanel.Dock="Right" Content="Shrani" Command="{Binding SaveCommand}" CommandParameter="{StaticResource True}"></Button>
+        </DockPanel>
+    </Grid>
+</UserControl>

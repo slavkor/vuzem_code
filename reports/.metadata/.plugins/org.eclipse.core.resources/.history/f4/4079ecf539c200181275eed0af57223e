@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="csite_stats_001" pageWidth="595" pageHeight="842" columnWidth="567" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="3ec2c7a1-c1ef-4eb2-883b-47489dba9340">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="net.sf.jasperreports.data.adapter" value="ISM.xml"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<parameter name="siteId" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "dep",
+    "expression" : "dep"
+  }, {
+    "name" : "cnt",
+    "expression" : "cnt"
+  }, {
+    "name" : "dir",
+    "expression" : "dir"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "api.ism/rpt/csite/328e3cdc-1c26-4ff8-b421-c7cd77fe1ed1/departurestats?token=8b4f13d0b31a7fc7bd0c4aed105d4af8c3d9403494f5c752485bd3af45b60351faba8ad93c393033"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="dep" class="java.lang.String"/>
+	<field name="cnt" class="java.lang.String"/>
+	<field name="dir" class="java.lang.String"/>
+	<title>
+		<band height="28">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<staticText>
+				<reportElement x="0" y="0" width="567" height="22" uuid="c630cee7-9923-4ab4-bf74-20bdcb0ff561">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[AKTIVNA GRADBIŠČA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="14">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="189" height="14" backcolor="#E3E3E3" uuid="e8658777-0049-45e7-b30f-3a6fed61090a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="682a37eb-e597-4234-b84e-258ff02761cb"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<text><![CDATA[dep]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="189" y="0" width="189" height="14" backcolor="#E3E3E3" uuid="c8a337e2-cc13-4be7-9519-76ee045afa70">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac0988e1-a929-41b7-98b8-8aa30153dd50"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<text><![CDATA[cnt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="378" y="0" width="189" height="14" backcolor="#E3E3E3" uuid="823fe396-1d56-48b8-bfd5-71cf229aa270">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d4851c96-254b-4285-963d-7994ac8e1f97"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<text><![CDATA[dir]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50">
+			<textField pattern="dd.MM.yyyy HH:mm">
+				<reportElement x="0" y="0" width="189" height="30" uuid="0e0c45fb-aa31-4ccd-8faa-9f52b205e81d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="682a37eb-e597-4234-b84e-258ff02761cb"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMddHHmmss").parse($F{dep})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="0" width="189" height="30" uuid="d8d76140-7248-428a-9848-ef3d995dfafc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac0988e1-a929-41b7-98b8-8aa30153dd50"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cnt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="378" y="0" width="189" height="30" uuid="8b10a1b0-aa24-479b-a808-3220683e3013">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d4851c96-254b-4285-963d-7994ac8e1f97"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{dir}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="44" splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="25">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="490" height="14" backcolor="#E6E6E6" uuid="aa28d066-c507-4eb9-bcdb-4a223f3c1bb4">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trenutno na gradbišču]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="490" y="0" width="77" height="14" backcolor="#E6E6E6" uuid="4a4ab2fe-c6dd-49e8-ae80-a408b4190cf6">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="14" width="111" height="11" uuid="f0dc5126-1d7e-4709-a97d-a9332c9e426b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Obr: site_stats_001]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="241" y="14" width="85" height="11" uuid="01b382b8-709e-41cc-b4ed-2468fc59d3c1">
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="456" y="14" width="111" height="11" uuid="b6f6c580-1927-4688-bbaf-4ae145e1ae41"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

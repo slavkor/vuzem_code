@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Ism.Construction.Views.ForemanProjects"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Construction.Views"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Style="{StaticResource UcStyle}"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <telerik:RadListBox Grid.Row="0" x:Name="list" ItemsSource="{Binding Projects}" BorderBrush="Black" BorderThickness="1" Margin="10"
+                            SelectedItem="{Binding SelectedProject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                            ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+            <telerik:RadListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <telerik:RadWrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </telerik:RadListBox.ItemsPanel>
+            <telerik:RadListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="Red">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="ll"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Gradbišče"></TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="Stranka"></TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Text="Projekt"></TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="3" Text="Številka projekta"></TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="4" Text="Začetek"></TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="5" Text="Konec"></TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="0"  Text="{Binding ElementName=csite, Path=Text}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1"  Text="{Binding ElementName=cust, Path=Text}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="2"  Text="{Binding Name}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="3"  Text="{Binding Externalnumber}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="4"  Text="{Binding Start.Date, StringFormat=dd.MM.yyyy}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="5"  Text="{Binding End.Date, StringFormat=dd.MM.yyyy}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </telerik:RadListBox.ItemTemplate>
+            <telerik:RadListBox.ItemContainerStyle>
+                <Style TargetType="telerik:RadListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Setter>
+                </Style>
+            </telerik:RadListBox.ItemContainerStyle>
+        </telerik:RadListBox>
+
+        <StackPanel Grid.Row="1" Visibility="Collapsed">
+            <TextBlock Name="csite" Text="{Binding SiteData.ConstructionSite.Name}"></TextBlock>
+            <TextBlock Name="cust" Text="{Binding SiteData.ConstructionSite.Customer.Name}"></TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="Ism.Departure.Views.EmployeeSelectList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Departure.Views"
+             xmlns:converter="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:localrgn="clr-namespace:Ism.Departure"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converters="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:ui="clr-namespace:Ism.Infrastructure.Ui;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             prism:ViewModelLocator.AutoWireViewModel="True"    
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/Grid.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <converter:GridItemIndexConverter x:Key="ItemInexconverter"></converter:GridItemIndexConverter>
+            <Style TargetType="telerik:GridViewSearchPanel" BasedOn="{StaticResource GW}">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Height" Value="50"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <telerik:RadGridView Name="list" ItemsSource="{Binding List}" AutoGenerateColumns="False" ShowSearchPanel="True" ShowGroupPanel="False" IsFilteringAllowed="False">
+            <telerik:RadGridView.Columns>
+                <!--<telerik:GridViewToggleRowDetailsColumn />-->
+                <telerik:GridViewCheckBoxColumn AutoSelectOnEdit="True" EditTriggers="CellClick" DataMemberBinding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header=""  ></telerik:GridViewCheckBoxColumn>
+                <telerik:GridViewDataColumn Header="Priimek"  DataMemberBinding="{Binding LastName}" IsReadOnly="True" >
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Ime" DataMemberBinding="{Binding Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Trenutna lokacija" DataMemberBinding="{Binding CurrentOccupancy.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Od" DataMemberBinding="{Binding CurrentOccupancy.Start.Date}"  DataFormatString="dd.MM.yyyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Št. dni" DataMemberBinding="{Binding CurrentOccupancy.TotalDays}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+
+            <!--<telerik:RadGridView.RowDetailsTemplate>
+                <DataTemplate>
+                    <telerik:RadTabControl x:Name="RadTabControl1"
+										   HorizontalAlignment="Stretch"
+										   Margin="8"
+										   VerticalAlignment="Stretch">
+                        <telerik:RadTabItem Header="Plan">
+                            <telerik:RadGridView ItemsSource="{Binding PlanedDepartures}" ShowGroupPanel="False" IsFilteringAllowed="False" AutoGenerateColumns="False">
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewDataColumn Header="Lokacija"  DataMemberBinding="{Binding DestinationName}" IsReadOnly="True" />
+                                    <telerik:GridViewDataColumn Header="Datum"  DataMemberBinding="{Binding DepartTime}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
+                        </telerik:RadTabItem>
+                        <telerik:RadTabItem Header="Zgodovina">
+                            <telerik:RadGridView ItemsSource="{Binding Occupancies}" ShowGroupPanel="False" IsFilteringAllowed="False" AutoGenerateColumns="False" >
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewDataColumn Header="Lokacija"  DataMemberBinding="{Binding Name}" IsReadOnly="True" />
+                                    <telerik:GridViewDataColumn Header="Od"  DataMemberBinding="{Binding Start.Date}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                                    <telerik:GridViewDataColumn Header="Do"  DataMemberBinding="{Binding End.Date}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                                    <telerik:GridViewDataColumn Header="Št. dni"  DataMemberBinding="{Binding TotalDays}" IsReadOnly="True" />
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
+                        </telerik:RadTabItem>
+
+                    </telerik:RadTabControl>
+                </DataTemplate>
+            </telerik:RadGridView.RowDetailsTemplate>-->
+            
+            <telerik:EventToCommandBehavior.EventBindings>
+                <telerik:EventBinding  Command="{Binding DoubleClickCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+            </telerik:EventToCommandBehavior.EventBindings>
+        </telerik:RadGridView>
+
+        <DockPanel Grid.Row="1" LastChildFill="False">
+            <Button DockPanel.Dock="Left" Content="Prekliči" Command="{Binding CancelCommand}" ></Button>
+            <Button DockPanel.Dock="Right" Content="Izberi" Command="{Binding SelectCommand}" ></Button>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Ism.Reports.Views.ReportsContext"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Reports.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:controls="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             prism:ViewModelLocator.AutoWireViewModel="True"              
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             x:Name="ucr">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseToogleButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="MenuItemContainer" TargetType="telerik:RadMenuItem">
+                <Setter Property="Icon" Value="{Binding IconUrl}"/>
+                <Setter Property="IconTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Image Source="{Binding}" Stretch="None"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="IsSeparator" Value="{Binding IsSeparator}"/>
+                <Setter Property="Header" Value="{Binding FriendlyName}"/>
+                <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+                <Setter Property="Command" Value="{Binding Command}"/>
+                <Setter Property="CommandParameter" Value="{Binding}"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <i:Interaction.Triggers>
+            <prism:InteractionRequestTrigger SourceObject="{Binding ReportInteractionRequest, Mode=OneWay}" >
+                <prism:PopupWindowAction IsModal="True" WindowStartupLocation="CenterOwner" WindowStyle="{StaticResource CustomWindowStyle}">
+                    <prism:PopupWindowAction.WindowContent>
+                        <local:ReportRequest />
+                    </prism:PopupWindowAction.WindowContent>
+                </prism:PopupWindowAction>
+            </prism:InteractionRequestTrigger>
+        </i:Interaction.Triggers>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel LastChildFill="True">
+            <ToggleButton Content="Izpisi" DockPanel.Dock="Left"
+              HorizontalAlignment="Left"
+              IsChecked="{Binding IsOpen, ElementName=radContextMenu, Mode=TwoWay}" Visibility="{Binding ReportsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">
+                <telerik:RadContextMenu.ContextMenu>
+                    <telerik:RadContextMenu x:Name="radContextMenu" Placement="Bottom" ItemsSource="{Binding Reports}" ItemContainerStyle="{StaticResource MenuItemContainer}" >
+                    </telerik:RadContextMenu>
+                </telerik:RadContextMenu.ContextMenu>
+            </ToggleButton>
+
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Ism.Sys.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ctrl="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:local="clr-namespace:Ism.Sys.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             prism:ViewModelLocator.AutoWireViewModel="True"              
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>    
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>            
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="label" Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Label Height="25" Content="Avtorizacisjki strežnik"></Label>
+            <Label Height="25" Content="Aplikacijski strežnik"></Label>
+            <Label Height="25" Content="Strežnik za izpise"></Label>
+            <Label Height="25" Content="Uporabniško ime"></Label>
+            <Label Height="25" Content="Geslo"></Label>
+            <Label Height="25" Content="SSL"></Label>
+            <Label Height="25" Content="Dev"></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <TextBox Height="25" Text="{Binding AuthServer}"></TextBox>
+            <TextBox Height="25" Text="{Binding ApiServer}"></TextBox>
+            <TextBox Height="25" Text="{Binding PrintServer}"></TextBox>
+            <TextBox Height="25" Text="{Binding PrintServerUser}"></TextBox>
+            <TextBox    x:Name="pwd" Height="25" Text="{Binding PrintServerPwd}"></TextBox>
+            <CheckBox Height="25" Grid.Row="1" ></CheckBox>
+            <CheckBox Height="25" Grid.Row="1" ></CheckBox>
+        </StackPanel>
+
+        <DockPanel Grid.Row="2" LastChildFill="False" Grid.ColumnSpan="2">
+            <Button DockPanel.Dock="Left" Content="Prekliči" Command="{Binding CancelCommand}"></Button>
+            <Button DockPanel.Dock="Right" Content="Shrani" Command="{Binding SaveSettingsCommand}"></Button>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_history_001" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="20011a06-f513-48df-9c63-4192f097608d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM"/>
+	<property name="net.sf.jasperreports.data.adapter" value="ISM.xml"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "name",
+    "expression" : "name"
+  }, {
+    "name" : "lastname",
+    "expression" : "lastname"
+  }, {
+    "name" : "taxnumber",
+    "expression" : "taxnumber"
+  }, {
+    "name" : "personalidnumber",
+    "expression" : "personalidnumber"
+  }, {
+    "name" : "nationality",
+    "expression" : "nationality"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "api.ismvuzem.si/rpt/employees/6281400b-2aa1-45e6-9249-1e8fc99191c4/data?token=54b9a6fd6b5c80e975d3a77e5d29d154b6067e3ec8d36eed266c4902abfadc60c0b954551a853098"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="name" class="java.lang.String"/>
+	<field name="lastname" class="java.lang.String"/>
+	<field name="taxnumber" class="java.lang.String"/>
+	<field name="personalidnumber" class="java.lang.String"/>
+	<field name="nationality" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="30" uuid="fd77a88b-823f-47df-93d4-27e54f99fcb5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1b6bed3a-7df1-45cc-9a40-cd6bb1e09006"/>
+				</reportElement>
+				<text><![CDATA[name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="30" uuid="5ebc6fac-1654-48a5-8aea-d441bcd8d083">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d719ab0e-08f3-4109-91ab-1c74973d00f8"/>
+				</reportElement>
+				<text><![CDATA[lastname]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="30" uuid="425d2773-1b6a-4d91-a4b0-bb42bc5ec1bd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da5d424f-4c4b-40f1-9b98-c18845fcba45"/>
+				</reportElement>
+				<text><![CDATA[taxnumber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="30" uuid="2436066c-da9e-4618-ab73-cbba991eafd9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe328e73-af84-44f8-af34-429d55e6143a"/>
+				</reportElement>
+				<text><![CDATA[personalidnumber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="30" uuid="ddf5a4c2-473c-4838-8821-b15d75f4435e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4509b75c-563d-4685-a7ae-f10912411187"/>
+				</reportElement>
+				<text><![CDATA[nationality]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="113" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<subreport>
+				<reportElement x="-20" y="30" width="595" height="34" uuid="59e7535a-2029-4a6e-a31d-c06bfe71a687">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportExpression><![CDATA["empl/employee_history_hire_001.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="-20" y="90" width="595" height="14" uuid="25ef3fba-851b-4ed5-a93f-a9006b6a7ace">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportExpression><![CDATA["empl/employee_history_work_001.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="0" y="0" width="111" height="17" uuid="9b3c24f1-7590-4b07-88d7-de5fedcd6e72">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1b6bed3a-7df1-45cc-9a40-cd6bb1e09006"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="17" uuid="e070d2a6-a7ec-46af-8d66-02a7fe3d9eda">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d719ab0e-08f3-4109-91ab-1c74973d00f8"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{lastname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="17" uuid="df83a65b-83c6-4d79-a0df-39969b8a7225">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da5d424f-4c4b-40f1-9b98-c18845fcba45"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{taxnumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="17" uuid="db1a45c7-b6e2-4ba4-8deb-7110588eda31">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe328e73-af84-44f8-af34-429d55e6143a"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{personalidnumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="17" uuid="9ec8493e-aab0-4e7c-8562-808fe9ec2128">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4509b75c-563d-4685-a7ae-f10912411187"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nationality}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

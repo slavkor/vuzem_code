@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Ism.Reports.Views.ReportsUserBind"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ctrl="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:local="clr-namespace:Ism.Reports.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:ui="clr-namespace:Ism.Infrastructure.Ui;assembly=Ism.Infrastructure"
+             prism:ViewModelLocator.AutoWireViewModel="True"              
+             mc:Ignorable="d" 
+             Style="{StaticResource ResourceKey=UcStyle}"                 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <telerik:RadGridView  Grid.Column="0" ItemsSource="{Binding Users}"  AutoGenerateColumns="False" FilteringMode="FilterRow" x:Name="ulist" SelectedItem="{Binding SelectedUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowGroupPanel="False" ShowColumnFooters="True">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewCheckBoxColumn AutoSelectOnEdit="True" EditTriggers="CellClick" DataMemberBinding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header=""  ></telerik:GridViewCheckBoxColumn>
+                    <telerik:GridViewDataColumn Header="Uporabniško ime"  DataMemberBinding="{Binding UserName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+            
+            <telerik:RadGridView  Grid.Column="1" ItemsSource="{Binding Reports}"  AutoGenerateColumns="False" FilteringMode="FilterRow" x:Name="list" SelectedItem="{Binding SelectedReport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowGroupPanel="False" ShowColumnFooters="True">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewCheckBoxColumn AutoSelectOnEdit="True" EditTriggers="CellClick" DataMemberBinding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header=""  ></telerik:GridViewCheckBoxColumn>
+                    <telerik:GridViewDataColumn Header="Id"  DataMemberBinding="{Binding ReportId}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Modul"  DataMemberBinding="{Binding Module}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Naziv izpisa"  DataMemberBinding="{Binding FriendlyName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Pot izpisa"  DataMemberBinding="{Binding ReportPath}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+
+            <DockPanel Grid.Row="1" LastChildFill="False" Grid.ColumnSpan="2">
+                <Button DockPanel.Dock="Left" Content="Prekliči" Command="{Binding CancelCommand}"></Button>
+                <!--<Button DockPanel.Dock="Right" Content="Shrani" Command="{Binding SaveCommand}"></Button>-->
+            </DockPanel>
+        </Grid>
+
+
+    </Grid>
+</UserControl>

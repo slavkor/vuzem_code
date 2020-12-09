@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Ism.Employees.Views.EmployeeSelectList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:local="clr-namespace:Ism.Employees.Views"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converter="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             prism:ViewModelLocator.AutoWireViewModel="True"     
+             mc:Ignorable="d" 
+             d:DesignHeight="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/Grid.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <converter:GridItemIndexConverter x:Key="ItemInexconverter"></converter:GridItemIndexConverter>
+            <Style TargetType="telerik:GridViewSearchPanel" BasedOn="{StaticResource GW}">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Height" Value="50"></Setter>
+            </Style>
+            
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <telerik:RadGridView Name="list" ItemsSource="{Binding Employees}" AutoGenerateColumns="False" ShowSearchPanel="True" ShowGroupPanel="False">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewCheckBoxColumn AutoSelectOnEdit="True" EditTriggers="CellClick" DataMemberBinding="{Binding Employee.IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header=""  ></telerik:GridViewCheckBoxColumn>
+                <telerik:GridViewDataColumn Header="Priimek"  DataMemberBinding="{Binding Employee.LastName}" IsReadOnly="True" >
+                </telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Ime" DataMemberBinding="{Binding Employee.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                <telerik:GridViewDataColumn Header="Delodajalec" DataMemberBinding="{Binding Company.ShortName}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+            </telerik:RadGridView.Columns>
+            <telerik:EventToCommandBehavior.EventBindings>
+                <telerik:EventBinding  Command="{Binding DoubleClickCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+            </telerik:EventToCommandBehavior.EventBindings>            
+        </telerik:RadGridView>
+
+        <DockPanel Grid.Row="1" LastChildFill="False">
+            <Button DockPanel.Dock="Left" Content="Prekliči" Command="{Binding CancelCommand}" ></Button>
+            <Button DockPanel.Dock="Right" Content="Izberi" Command="{Binding SelectCommand}" ></Button>
+        </DockPanel>
+    </Grid>
+</UserControl>

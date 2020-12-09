@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="Ism.Document.Views.DocmentsExt"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converter="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:local="clr-namespace:Ism.Document.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:controls="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             Style="{StaticResource ResourceKey=UcStyle}"
+             prism:ViewModelLocator.AutoWireViewModel="True"                
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/WindowStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/Grid.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BoolToVis"></BooleanToVisibilityConverter>
+            <converter:DayModelToDateTimeConverter x:Key="DayToDateTime"></converter:DayModelToDateTimeConverter>
+            <converter:SecurityScopeToVisibilityConverter x:Key="SecurityToVisbility"></converter:SecurityScopeToVisibilityConverter>
+
+            <Style TargetType="telerik:GridViewSearchPanel" BasedOn="{StaticResource GW}">
+                <Setter Property="FontSize" Value="15"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="1">
+                <Button DockPanel.Dock="Left" Command="{Binding DocumentsPrintCommand}">Natisni</Button>
+                <Button DockPanel.Dock="Left" Command="{Binding DocumentCommand}" CommandParameter ="{x:Null}" Visibility="{Binding Source={x:Null}, Converter={StaticResource ResourceKey=SecurityToVisbility}, ConverterParameter=document.add, Mode=OneWay}">Dodaj dokument</Button>
+                <Button DockPanel.Dock="Left" Command="{Binding DocumentCommandEdit}" CommandParameter ="{Binding SelectedItem, ElementName=list}" Visibility="{Binding Source={x:Null}, Converter={StaticResource ResourceKey=SecurityToVisbility}, ConverterParameter=document.edit, Mode=OneWay}">Uredi dokument</Button>
+                <Button DockPanel.Dock="Left" Command="{Binding DocumentCommandDelete}" CommandParameter ="{Binding SelectedItem, ElementName=list}" Visibility="{Binding Source={x:Null}, Converter={StaticResource ResourceKey=SecurityToVisbility}, ConverterParameter=document.delete, Mode=OneWay}">Briši dokument</Button>
+            </StackPanel>
+
+            <telerik:RadGridView Grid.Row="1" ItemsSource="{Binding Documents}" 
+                                 AutoGenerateColumns="False" 
+                                 x:Name="list" 
+                                 ShowSearchPanel="True"
+                                 SelectedItem="{Binding SelectedDocument, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewCheckBoxColumn AutoSelectOnEdit="True" EditTriggers="CellClick" DataMemberBinding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header=""  ></telerik:GridViewCheckBoxColumn>
+                    <telerik:GridViewDataColumn Header="Dokument"  DataMemberBinding="{Binding Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Tip dokumenta" DataMemberBinding="{Binding Type.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Datum dokumenta" DataMemberBinding="{Binding DocDate.Date}" DataFormatString="dd.MM.yyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Velja od" DataMemberBinding="{Binding ValidFrom.Date}" DataFormatString="dd.MM.yyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Velja do" DataMemberBinding="{Binding ValidTo.Date}" DataFormatString="dd.MM.yyy" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Naslednji dokument (tip)" DataMemberBinding="{Binding Next.Type.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Naslednji dokument" DataMemberBinding="{Binding Next.Name}" IsReadOnly="True" ></telerik:GridViewDataColumn>
+                </telerik:RadGridView.Columns>
+                <telerik:EventToCommandBehavior.EventBindings>
+                    <telerik:EventBinding  Command="{Binding DocumentCommandEdit}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+                </telerik:EventToCommandBehavior.EventBindings>
+            </telerik:RadGridView>
+
+            <!--<xcdg:DataGridControl  Name="DocumentsList" Grid.Row="1" ItemsSource="{Binding Documents}" AutoCreateColumns="False" SelectedItem="{Binding SelectedDocument}" BorderThickness="0" ReadOnly="True" AllowDrag="True">
+                    <xcdg:DataGridControl.View>
+                        <xcdg:TableflowView UseDefaultHeadersFooters="False">
+                            <xcdg:TableflowView.FixedHeaders>
+                                <DataTemplate>
+                                    <xcdg:ColumnManagerRow />
+                                </DataTemplate>
+                            </xcdg:TableflowView.FixedHeaders>
+                        </xcdg:TableflowView>
+                    </xcdg:DataGridControl.View>
+                    <xcdg:DataGridControl.Columns>
+                        <xcdg:Column FieldName="Name" Title="Dokument" />
+                        <xcdg:Column FieldName="Type.Name" Title="Tip dokumenta" />
+                        <xcdg:Column FieldName="DocDate.Date" Title="Datum dokumenta" />
+                        <xcdg:Column FieldName="ValidFrom.Date" Title="Velja od"  />
+                        <xcdg:Column FieldName="ValidTo.Date" Title="Velja do" />
+                    </xcdg:DataGridControl.Columns>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding DocumentCommandEdit}" CommandParameter ="{Binding SelectedItem, ElementName=DocumentsList}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+            </xcdg:DataGridControl>-->
+        </Grid>
+    </Grid>
+</UserControl>
+
+
+
+
+
+
+

@@ -1,0 +1,558 @@
+﻿<UserControl x:Class="Ism.Construction.Views.ConstructionSitesList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Construction.Views"
+             xmlns:ui="clr-namespace:Ism.Infrastructure.Ui;assembly=Ism.Infrastructure"
+             xmlns:localrgn="clr-namespace:Ism.Construction"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converter="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:xct="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:timelines="clr-namespace:Telerik.Windows.Controls.Timeline;assembly=Telerik.Windows.Controls.DataVisualization"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Style="{StaticResource UcStyle}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/ConstructionSites.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/Grid.xaml"></ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+            <converter:DayModelToDateTimeConverter x:Key="DayToDateTime"></converter:DayModelToDateTimeConverter>
+            <converter:SolidColorBrushConverter x:Key="BrushConverter"></converter:SolidColorBrushConverter>
+            <converter:RangeSliderConverter x:Key="RangeSliderConverte"></converter:RangeSliderConverter>
+            <converter:TimelinePeriodConverter x:Key="TimelinePeriodConverter"></converter:TimelinePeriodConverter>
+
+            <Style TargetType="telerik:TimelineItemGroupControl">
+                <Setter Property="IsExpanded" Value="True" />
+            </Style>
+            <Style TargetType="telerik:GridViewSearchPanel" BasedOn="{StaticResource GW}">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Height" Value="50"></Setter>
+            </Style>
+
+            <ui:CompabyBackgroundColorSelector x:Key="collorStyle"></ui:CompabyBackgroundColorSelector>
+
+            <DataTemplate x:Key="ContentTemplate">
+                <Grid>
+                    <telerik:RadTimeBar x:Name="timebar"
+                                    Grid.Row="2" VerticalAlignment="Top" 
+                                    IsSnapToIntervalEnabled="True"
+                                    EnableSparklineVirtualization="False"
+                                    PeriodStart="{Binding MinDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    PeriodEnd="{Binding MaxDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    VisiblePeriodStart="{Binding VisibleStart , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    VisiblePeriodEnd="{Binding VisibleEnd , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectionStart="{Binding SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectionEnd="{Binding SelectionEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                        <telerik:RadTimeBar.Intervals>
+                            <telerik:YearInterval />
+                            <telerik:MonthInterval />
+                            <telerik:WeekInterval />
+                            <telerik:DayInterval />
+                        </telerik:RadTimeBar.Intervals>
+
+                        <Grid>
+                            <telerik:RadCartesianChart Margin="0 0 0 0 ">
+                                <telerik:RadCartesianChart.VerticalAxis>
+                                    <telerik:LinearAxis Visibility="Collapsed"/>
+                                </telerik:RadCartesianChart.VerticalAxis>
+                                <telerik:RadCartesianChart.HorizontalAxis>
+                                    <telerik:DateTimeContinuousAxis Visibility="Collapsed"  MajorStep="1" MajorStepUnit="Day" Minimum="{Binding MinDate}" Maximum="{Binding MaxDate}" />
+                                </telerik:RadCartesianChart.HorizontalAxis>
+
+                                <telerik:RadCartesianChart.Series>
+                                    <telerik:BarSeries ItemsSource="{Binding Dates}" 
+                                           CombineMode="Stack"
+                                           ValueBinding="Limit" 
+                                           CategoryBinding="Date" 
+                                           PaletteMode="Series"
+                                           ShowLabels="True">
+                                        <telerik:BarSeries.DefaultVisualStyle>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Background" Value="Green" />
+                                            </Style>
+                                        </telerik:BarSeries.DefaultVisualStyle>
+
+                                        <telerik:BarSeries.LabelDefinitions>
+                                            <telerik:ChartSeriesLabelDefinition HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <telerik:ChartSeriesLabelDefinition.Template>
+                                                    <DataTemplate>
+                                                        <Viewbox StretchDirection="Both" Stretch="Uniform">
+                                                            <TextBlock Text="{Binding DataItem.Limit}" Foreground="Black" FontWeight="Bold">
+                                                                <TextBlock.LayoutTransform>
+                                                                    <TransformGroup>
+                                                                        <TransformGroup.Children>
+                                                                            <RotateTransform Angle="-90"/>
+                                                                        </TransformGroup.Children>
+                                                                    </TransformGroup>
+                                                                </TextBlock.LayoutTransform>
+                                                            </TextBlock>
+                                                        </Viewbox>
+                                                    </DataTemplate>
+                                                </telerik:ChartSeriesLabelDefinition.Template>
+                                            </telerik:ChartSeriesLabelDefinition>
+                                        </telerik:BarSeries.LabelDefinitions>
+                                    </telerik:BarSeries>
+                                    <telerik:BarSeries ItemsSource="{Binding Dates}" 
+                                           CombineMode="Stack"
+                                           ValueBinding="LimitOverflow" 
+                                           CategoryBinding="Date" 
+                                           PaletteMode="Series"
+                                           ShowLabels="True">
+                                        <telerik:BarSeries.DefaultVisualStyle>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Background" Value="Red" />
+                                            </Style>
+                                        </telerik:BarSeries.DefaultVisualStyle>
+                                        <telerik:BarSeries.LabelDefinitions>
+                                            <telerik:ChartSeriesLabelDefinition HorizontalAlignment="Center" VerticalAlignment="Top">
+                                                <telerik:ChartSeriesLabelDefinition.Template>
+                                                    <DataTemplate>
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding DataItem.LimitOverflow}"  FontSize="10"  Foreground="Red" FontWeight="Bold">
+                                                                <TextBlock.LayoutTransform>
+                                                                    <TransformGroup>
+                                                                        <TransformGroup.Children>
+                                                                            <RotateTransform Angle="-90"/>
+                                                                        </TransformGroup.Children>
+                                                                    </TransformGroup>
+                                                                </TextBlock.LayoutTransform>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </telerik:ChartSeriesLabelDefinition.Template>
+                                            </telerik:ChartSeriesLabelDefinition>
+                                        </telerik:BarSeries.LabelDefinitions>
+                                    </telerik:BarSeries>
+                                    <telerik:LineSeries CombineMode="Stack" ValueBinding="Max" CategoryBinding="Date" ItemsSource="{Binding Dates}" Stroke="Red" StrokeThickness="1" BorderThickness="0.5"/>
+                                </telerik:RadCartesianChart.Series>
+                            </telerik:RadCartesianChart>
+                        </Grid>
+
+                        <telerik:EventToCommandBehavior.EventBindings>
+                            <telerik:EventBinding EventName="SelectionChanged" Command="{Binding SelectionChangedEventCommand}" RaiseOnHandledEvents="True">
+                                <telerik:EventBinding.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource TimelinePeriodConverter}">
+                                        <Binding Path="SelectionStart" ElementName="timebar"/>
+                                        <Binding Path="SelectionEnd" ElementName="timebar"/>
+                                    </MultiBinding>
+                                </telerik:EventBinding.CommandParameter>
+                            </telerik:EventBinding>
+                        </telerik:EventToCommandBehavior.EventBindings>
+                    </telerik:RadTimeBar>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="RowPlanDetailsTemplate">
+                <telerik:RadGridView Name="planGrid" 
+                        ItemsSource="{Binding WorkPeriods}" 
+                        AutoGenerateColumns="False" ShowGroupPanel="False" ShowColumnFooters="True" IsFilteringAllowed="False">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Št. zaposlenih"  DataMemberBinding="{Binding Plan}" IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.AggregateFunctions>
+                        <telerik:SumFunction Caption="Število zaposlenih: " />
+                    </telerik:GridViewDataColumn.AggregateFunctions>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Header="Stopnja"  DataMemberBinding="{Binding Description}" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="Začetek"  DataMemberBinding="{Binding Start}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                    <telerik:GridViewDataColumn Header="Konec"  DataMemberBinding="{Binding End}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+            </DataTemplate>
+            <DataTemplate x:Key="RowDetailsTemplate">
+                <telerik:RadGridView Name="projectsGrid" 
+                        ItemsSource="{Binding Projects}" 
+                        AutoGenerateColumns="False" ShowGroupPanel="False" ShowColumnFooters="True" IsFilteringAllowed="False"
+                                     RowDetailsTemplate="{StaticResource RowPlanDetailsTemplate}">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewToggleRowDetailsColumn></telerik:GridViewToggleRowDetailsColumn>
+                        <telerik:GridViewDataColumn Header="Št. zaposlenih"  DataMemberBinding="{Binding EstimatedWorkers}" IsReadOnly="True" >
+                            <telerik:GridViewDataColumn.AggregateFunctions>
+                                <telerik:SumFunction Caption="Število zaposlenih: " />
+                            </telerik:GridViewDataColumn.AggregateFunctions>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Projekt"  DataMemberBinding="{Binding Name}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="Začetek"  DataMemberBinding="{Binding Start.Date}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="Konec"  DataMemberBinding="{Binding End.Date}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+            </DataTemplate>
+            <DataTemplate  x:Key="tmItemTemplate">
+                <!--<telerik:RadGridView Name="pp" 
+                        ItemsSource="{Binding DataItem.Projects}" 
+                        AutoGenerateColumns="False" ShowGroupPanel="False" ShowColumnFooters="True" IsFilteringAllowed="False"
+                                     RowDetailsTemplate="{StaticResource RowPlanDetailsTemplate}">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewToggleRowDetailsColumn></telerik:GridViewToggleRowDetailsColumn>
+                        <telerik:GridViewDataColumn Header="Št. zaposlenih"  DataMemberBinding="{Binding EstimatedWorkers}" IsReadOnly="True" >
+                            <telerik:GridViewDataColumn.AggregateFunctions>
+                                <telerik:SumFunction Caption="Število zaposlenih: " />
+                            </telerik:GridViewDataColumn.AggregateFunctions>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Header="Projekt"  DataMemberBinding="{Binding Name}" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="Začetek"  DataMemberBinding="{Binding Start.Date}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                        <telerik:GridViewDataColumn Header="Konec"  DataMemberBinding="{Binding End.Date}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>-->
+
+                <telerik:RadTimeline
+                                 x:Name="timeline"
+                                 PeriodStart="{Binding Start}" 
+                                 PeriodEnd="{Binding End}" 
+                                 VisiblePeriodStart="{Binding Start}" 
+                                 VisiblePeriodEnd="{Binding End}" 
+                                 StartPath="Start"
+                                 DurationPath="Duration"
+                                 SelectionMode="Single"
+                                 IsSelectionEnabled="False"
+                                 ItemsSource="{Binding DataItem.Projects}" 
+                                 ToolTipTemplate="{StaticResource SiteToolTipTemplate}"
+                                 TimelineItemTemplate="{StaticResource Site_Custom}" 
+                                 ScrollMode="None">
+                    <telerik:RadTimeline.Intervals>
+                        <telerik:MonthInterval />
+                        <telerik:WeekInterval />
+                        <telerik:DayInterval />
+                    </telerik:RadTimeline.Intervals>
+                    <telerik:EventToCommandBehavior.EventBindings>
+                        <telerik:EventBinding EventName="MouseDoubleClick" Command="{Binding EditConstructionSiteCommand}" CommandParameter="{Binding ElementName=timeline, Path=SelectedItem}" RaiseOnHandledEvents="True"></telerik:EventBinding>
+                    </telerik:EventToCommandBehavior.EventBindings>
+                </telerik:RadTimeline>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <telerik:RadCalendar Grid.Row="0" Grid.Column="0" MaxHeight="300"
+                                 SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 SelectionMode="Single"
+                                 DateSelectionMode="Year"
+                                 VerticalAlignment="Top"/>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <telerik:RadListBox x:Name="listbox" ItemsSource="{Binding ProjectsInSelection}" BorderBrush="Black" BorderThickness="1" Margin="10"
+                            ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" >
+                <telerik:RadListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" CanVerticallyScroll="True"/>
+                    </ItemsPanelTemplate>
+                </telerik:RadListBox.ItemsPanel>
+                <telerik:RadListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" BorderBrush="Red" MaxWidth="300">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock  Grid.Row="0"  Text="{Binding Site.Name}"/>
+                                <TextBlock  Grid.Row="1"  Text="{Binding Site.Customer.Name}"/>
+                                <TextBlock  Grid.Row="2"  Text="{Binding Name}"/>
+                                <TextBlock  Grid.Row="3"  Text="{Binding Externalnumber}"/>
+                                <TextBlock  Grid.Row="4"  Text="{Binding Start.Date, StringFormat=dd.MM.yyyy}"/>
+                                <TextBlock  Grid.Row="5"  Text="{Binding End.Date, StringFormat=dd.MM.yyyy}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </telerik:RadListBox.ItemTemplate>
+            </telerik:RadListBox>
+
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <telerik:RadTabControl Name="tab" Grid.Row="0">
+                <telerik:RadTabItem Header="Časovnica" Tag="0">
+                    <telerik:RadTimeline
+                                 x:Name="timeline"
+                                 PeriodStart="{Binding MinDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 PeriodEnd="{Binding MaxDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 VisiblePeriodStart="{Binding VisibleStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 VisiblePeriodEnd="{Binding VisibleEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 StartPath="Start"
+                                 DurationPath="Duration"
+                                 SelectionMode="Single"
+                                 IsSelectionEnabled="True"
+                                 SelectedItem="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 ItemsSource="{Binding ConstructionSites}" 
+                                 ToolTipTemplate="{StaticResource SiteToolTipTemplate}"
+                                 TimelineItemTemplate="{StaticResource Site_Custom}" 
+                                 GroupExpandMode="Multiple"
+                                 GroupPath="ConstructionStieState"
+                                 VerticalScrollBarVisibility="Auto"
+                                 DockPanel.Dock="Left">
+                        <telerik:RadTimeline.ItemRowIndexGenerator>
+                            <ui:NewLineRowIndexGenerator />
+                        </telerik:RadTimeline.ItemRowIndexGenerator>
+                        <telerik:RadTimeline.Intervals>
+                            <telerik:MonthInterval />
+                            <telerik:WeekInterval />
+                            <telerik:DayInterval />
+                        </telerik:RadTimeline.Intervals>
+                        <telerik:EventToCommandBehavior.EventBindings>
+                            <telerik:EventBinding EventName="MouseDoubleClick" Command="{Binding EditConstructionSiteCommand}" CommandParameter="{Binding ElementName=timeline, Path=SelectedItem}" RaiseOnHandledEvents="True"></telerik:EventBinding>
+                        </telerik:EventToCommandBehavior.EventBindings>
+                    </telerik:RadTimeline>
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header="Časovnica povezana" Visibility="Collapsed" Tag="1">
+                    <Grid>
+                        <telerik:RadGanttView x:Name="ganttview" TasksSource="{Binding Tasks}" BorderBrush="#FFD6D4D4"
+				                BorderThickness="1 0 1 1" PixelLength="1:00:00"
+				                VisibleRange="{Binding VisibleRange}"
+				                Margin="0 6 0 0">
+                            <telerik:RadGanttView.Columns>
+                                <telerik:TreeColumnDefinition Header="Title" MemberBinding="{Binding Title}" Width="240">
+                                    <telerik:TreeColumnDefinition.CellEditTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Title}" telerik:TouchManager.TouchMode="None" />
+                                        </DataTemplate>
+                                    </telerik:TreeColumnDefinition.CellEditTemplate>
+                                </telerik:TreeColumnDefinition>
+                                <telerik:ColumnDefinition MemberBinding="{Binding Start}" Header="Start" Width="120" MaxWidth="120">
+                                    <telerik:ColumnDefinition.CellEditTemplate>
+                                        <DataTemplate>
+                                            <telerik:RadDateTimePicker SelectedValue="{Binding Start}" />
+                                        </DataTemplate>
+                                    </telerik:ColumnDefinition.CellEditTemplate>
+                                    <telerik:ColumnDefinition.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Start, StringFormat=dd.MM.yyyy}"/>
+                                        </DataTemplate>
+                                    </telerik:ColumnDefinition.CellTemplate>
+                                </telerik:ColumnDefinition>
+                                <telerik:ColumnDefinition MemberBinding="{Binding End}" Header="End" Width="120" MaxWidth="120">
+                                    <telerik:ColumnDefinition.CellEditTemplate>
+                                        <DataTemplate>
+                                            <telerik:RadDateTimePicker SelectedValue="{Binding End}" />
+                                        </DataTemplate>
+
+                                    </telerik:ColumnDefinition.CellEditTemplate>
+                                    <telerik:ColumnDefinition.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding End, StringFormat=dd.MM.yyyy}"/>
+                                        </DataTemplate>
+                                    </telerik:ColumnDefinition.CellTemplate>
+                                </telerik:ColumnDefinition>
+                            </telerik:RadGanttView.Columns>
+                        </telerik:RadGanttView>
+                    </Grid>
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header="Seznam" Tag="2">
+                    <telerik:RadGridView Grid.Row="0" Name="list" ItemsSource="{Binding ConstructionSites}" 
+                                         ShowGroupPanel="False" IsFilteringAllowed="False" AutoGenerateColumns="False" ShowSearchPanel="True" ShowColumnFooters="True" 
+                                         SelectedItem="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         RowStyleSelector="{StaticResource collorStyle}"
+                                         RowDetailsTemplate="{StaticResource RowDetailsTemplate}">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewToggleRowDetailsColumn/>
+                            <telerik:GridViewDataColumn Header="Št. zaposlenih"  DataMemberBinding="{Binding EstimatedWorkers}" IsReadOnly="True" >
+                                <telerik:GridViewDataColumn.AggregateFunctions>
+                                    <telerik:SumFunction Caption="Število zaposlenih: " />
+                                </telerik:GridViewDataColumn.AggregateFunctions>
+                            </telerik:GridViewDataColumn>
+                            <telerik:GridViewDataColumn Header="Stranka"  DataMemberBinding="{Binding Site.Customer.Name}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="Gradbišče"  DataMemberBinding="{Binding Site.Name}" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="Začetek"  DataMemberBinding="{Binding Start}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                            <telerik:GridViewDataColumn Header="Konec"  DataMemberBinding="{Binding End}" DataFormatString="dd.MM.yyyy" IsReadOnly="True" />
+                        </telerik:RadGridView.Columns>
+                        <telerik:EventToCommandBehavior.EventBindings>
+                            <telerik:EventBinding  Command="{Binding EditConstructionSiteCommand}" EventName="MouseDoubleClick" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" RaiseOnHandledEvents="True"/>
+                        </telerik:EventToCommandBehavior.EventBindings>
+                    </telerik:RadGridView>
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header="Pregled in plan" Tag="3">
+                    <Grid>
+                        <Grid.Resources>
+                            <DataTemplate x:Key="RowDetailsTemplate">
+                                <telerik:RadGridView Name="employeesGrid" ItemsSource="{Binding Employees}" AutoGenerateColumns="False" ShowColumnFooters="False" ShowGroupPanel="False">
+                                    <telerik:RadGridView.Columns>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding LastName}"/>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}"/>
+                                    </telerik:RadGridView.Columns>
+                                </telerik:RadGridView>
+                            </DataTemplate>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <telerik:RadGridView Grid.Row="1" Grid.Column="0" Margin="10" 
+                                             AutoGenerateColumns="False" 
+                                             ItemsSource="{Binding Sites}"
+                                             RowDetailsTemplate="{StaticResource RowDetailsTemplate}">
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewToggleRowDetailsColumn/>
+                                <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}"/>
+                                <telerik:GridViewDataColumn DataMemberBinding="{Binding Customer.Name}"/>
+                            </telerik:RadGridView.Columns>
+
+                        </telerik:RadGridView>
+                        <telerik:RadGridView Grid.Row="1" Grid.Column="1" Margin="10">
+
+                        </telerik:RadGridView>
+                        <telerik:RadGridView Grid.Row="1" Grid.Column="2" Margin="10">
+
+                        </telerik:RadGridView>
+
+                    </Grid>
+                    
+                </telerik:RadTabItem>
+
+                <telerik:EventToCommandBehavior.EventBindings>
+
+                    <telerik:EventBinding  Command="{Binding TabSelectionChangedCommand}" EventName="SelectionChanged" CommandParameter="{Binding ElementName=tab, Path=SelectedItem}" RaiseOnHandledEvents="True" />
+
+                </telerik:EventToCommandBehavior.EventBindings>
+            </telerik:RadTabControl>
+
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"  Height="5" Background="Gray"/>
+
+            <telerik:RadTabControl Grid.Row="2" TabOrientation="Vertical" TabStripPlacement="Left">
+                <telerik:RadTabItem Header="Po projektih">
+                    <telerik:RadTimeBar x:Name="timebar"
+                                    Grid.Row="2" VerticalAlignment="Top" 
+                                    IsSnapToIntervalEnabled="True"
+                                    EnableSparklineVirtualization="False"
+                                    PeriodStart="{Binding MinDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    PeriodEnd="{Binding MaxDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    VisiblePeriodStart="{Binding VisibleStart , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    VisiblePeriodEnd="{Binding VisibleEnd , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectionStart="{Binding SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectionEnd="{Binding SelectionEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                        <telerik:RadTimeBar.Intervals>
+                            <telerik:YearInterval />
+                            <telerik:MonthInterval />
+                            <telerik:WeekInterval />
+                            <telerik:DayInterval />
+                        </telerik:RadTimeBar.Intervals>
+
+                        <Grid>
+                            <telerik:RadCartesianChart Margin="0 0 0 0 ">
+                                <telerik:RadCartesianChart.VerticalAxis>
+                                    <telerik:LinearAxis Visibility="Collapsed"/>
+                                </telerik:RadCartesianChart.VerticalAxis>
+                                <telerik:RadCartesianChart.HorizontalAxis>
+                                    <telerik:DateTimeContinuousAxis Visibility="Collapsed"  MajorStep="1" MajorStepUnit="Day" Minimum="{Binding MinDate}" Maximum="{Binding MaxDate}" />
+                                </telerik:RadCartesianChart.HorizontalAxis>
+
+                                <telerik:RadCartesianChart.Series>
+                                    <telerik:BarSeries ItemsSource="{Binding Dates}" 
+                                           CombineMode="Stack"
+                                           ValueBinding="Limit" 
+                                           CategoryBinding="Date" 
+                                           PaletteMode="Series"
+                                           ShowLabels="True">
+                                        <telerik:BarSeries.DefaultVisualStyle>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Background" Value="Green" />
+                                            </Style>
+                                        </telerik:BarSeries.DefaultVisualStyle>
+
+                                        <telerik:BarSeries.LabelDefinitions>
+                                            <telerik:ChartSeriesLabelDefinition HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <telerik:ChartSeriesLabelDefinition.Template>
+                                                    <DataTemplate>
+                                                        <Viewbox StretchDirection="Both" Stretch="Uniform">
+                                                            <TextBlock Text="{Binding DataItem.Limit}" Foreground="Black" FontWeight="Bold">
+                                                                <TextBlock.LayoutTransform>
+                                                                    <TransformGroup>
+                                                                        <TransformGroup.Children>
+                                                                            <RotateTransform Angle="-90"/>
+                                                                        </TransformGroup.Children>
+                                                                    </TransformGroup>
+                                                                </TextBlock.LayoutTransform>
+                                                            </TextBlock>
+                                                        </Viewbox>
+                                                    </DataTemplate>
+                                                </telerik:ChartSeriesLabelDefinition.Template>
+                                            </telerik:ChartSeriesLabelDefinition>
+                                        </telerik:BarSeries.LabelDefinitions>
+                                    </telerik:BarSeries>
+                                    <telerik:BarSeries ItemsSource="{Binding Dates}" 
+                                           CombineMode="Stack"
+                                           ValueBinding="LimitOverflow" 
+                                           CategoryBinding="Date" 
+                                           PaletteMode="Series"
+                                           ShowLabels="True">
+                                        <telerik:BarSeries.DefaultVisualStyle>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Background" Value="Red" />
+                                            </Style>
+                                        </telerik:BarSeries.DefaultVisualStyle>
+                                        <telerik:BarSeries.LabelDefinitions>
+                                            <telerik:ChartSeriesLabelDefinition HorizontalAlignment="Center" VerticalAlignment="Top">
+                                                <telerik:ChartSeriesLabelDefinition.Template>
+                                                    <DataTemplate>
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding DataItem.LimitOverflow}"  FontSize="10"  Foreground="Red" FontWeight="Bold">
+                                                                <TextBlock.LayoutTransform>
+                                                                    <TransformGroup>
+                                                                        <TransformGroup.Children>
+                                                                            <RotateTransform Angle="-90"/>
+                                                                        </TransformGroup.Children>
+                                                                    </TransformGroup>
+                                                                </TextBlock.LayoutTransform>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </telerik:ChartSeriesLabelDefinition.Template>
+                                            </telerik:ChartSeriesLabelDefinition>
+                                        </telerik:BarSeries.LabelDefinitions>
+                                    </telerik:BarSeries>
+                                    <telerik:LineSeries CombineMode="Stack" ValueBinding="Max" CategoryBinding="Date" ItemsSource="{Binding Dates}" Stroke="Red" StrokeThickness="1" BorderThickness="0.5"/>
+                                </telerik:RadCartesianChart.Series>
+                            </telerik:RadCartesianChart>
+                        </Grid>
+
+                        <telerik:EventToCommandBehavior.EventBindings>
+                            <telerik:EventBinding EventName="SelectionChanged" Command="{Binding SelectionChangedEventCommand}" RaiseOnHandledEvents="True">
+                                <telerik:EventBinding.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource TimelinePeriodConverter}">
+                                        <Binding Path="SelectionStart" ElementName="timebar"/>
+                                        <Binding Path="SelectionEnd" ElementName="timebar"/>
+                                    </MultiBinding>
+                                </telerik:EventBinding.CommandParameter>
+                            </telerik:EventBinding>
+                        </telerik:EventToCommandBehavior.EventBindings>
+                    </telerik:RadTimeBar>
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header="Po planu">
+                    <telerik:RadTabControl x:Name="radTabControl" Margin="8" ItemsSource="{Binding WorkPlaceInfos}"
+                                           DisplayMemberPath="WorkPlace.WorkPlaceName"
+                                           ContentTemplate="{StaticResource ContentTemplate}"/>
+                </telerik:RadTabItem>
+            </telerik:RadTabControl>
+        </Grid>
+    </Grid>
+</UserControl>

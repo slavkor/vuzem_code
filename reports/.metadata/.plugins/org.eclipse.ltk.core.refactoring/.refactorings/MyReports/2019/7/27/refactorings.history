@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;dep_list_car_001.jrxml&apos; to &apos;departure&apos;&#x0D;&#x0A;- Original project: &apos;MyReports&apos;&#x0D;&#x0A;- Destination element: &apos;departure&apos;&#x0D;&#x0A;- Original element: &apos;dep_list_car_001.jrxml&apos;" description="Copy file" element1="departure/dep_list_car_001.jrxml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1562055493645" target="/MyReports/departure" units="0" version="1.0"/>
+</session>

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Ism.BusinessPartners.Views.BusinessPartnerNavView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:converters="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.BusinessPartners.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:SecurityScopeToVisibilityConverter x:Key="SecurityToVisbility"></converters:SecurityScopeToVisibilityConverter>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Button Command="{Binding NavigateBusinessPartners}" Visibility="{Binding Source={x:Null}, Converter={StaticResource ResourceKey=SecurityToVisbility}, ConverterParameter=bussinesspartner, Mode=OneWay}">Poslovni partnerji</Button>
+    </Grid>
+</UserControl>

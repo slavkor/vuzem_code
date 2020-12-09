@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;csite_stats_001.jrxml&apos; to &apos;csite_stats_001.jrxml&apos;&#x0D;&#x0A;- Original project: &apos;MyReports&apos;&#x0D;&#x0A;- Destination element: &apos;csite_stats_001.jrxml&apos;&#x0D;&#x0A;- Original element: &apos;csite_stats_001.jrxml&apos;" description="Copy file" element1="csite/csite_stats_001.jrxml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1543237166911" target="/MyReports/csite/csite_stats_001.jrxml" units="0" version="1.0"/>
+</session>

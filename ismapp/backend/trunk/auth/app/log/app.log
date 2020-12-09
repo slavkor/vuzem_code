@@ -1,0 +1,50 @@
+[2018-09-06T09:28:10.289890+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"13cd119"}
+[2018-09-06T09:28:10.320710+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"13cd119"}
+[2018-11-29T09:22:49.356361+01:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"d35a8ab"}
+[2018-11-29T09:22:49.427561+01:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"d35a8ab"}
+[2019-07-16T09:11:17.426466+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"387111d"}
+[2019-07-16T09:11:17.435220+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"387111d"}
+[2019-07-16T09:11:22.014460+02:00] app.INFO: App\Action\ScopeAction:GetAllScopes [] {"uid":"4d036f1"}
+[2019-07-16T09:11:38.252556+02:00] app.INFO: App\Action\ScopeAction:AddScope [] {"uid":"6411fa0"}
+[2019-07-16T09:11:38.254032+02:00] app.INFO: App\Repository\ScopeRepository:AddScope [] {"uid":"6411fa0"}
+[2019-07-16T09:11:38.262646+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"id","class":"App\\Models\\ScopeEntity"} {"uid":"6411fa0"}
+[2019-07-16T09:11:38.262752+02:00] app.INFO: Property {property} does not exist in {class} {"property":"iid","class":"App\\Models\\ScopeEntity"} {"uid":"6411fa0"}
+[2019-07-16T09:11:38.262813+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"uuid","class":"App\\Models\\ScopeEntity"} {"uid":"6411fa0"}
+[2019-07-16T09:11:38.262877+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"active","class":"App\\Models\\ScopeEntity"} {"uid":"6411fa0"}
+[2019-07-16T09:11:38.262975+02:00] app.INFO: Property {property} does not exist in {class} {"property":"deleted","class":"App\\Models\\ScopeEntity"} {"uid":"6411fa0"}
+[2019-07-16T09:11:38.263060+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"crdate","class":"App\\Models\\ScopeEntity"} {"uid":"6411fa0"}
+[2019-07-16T09:11:38.263126+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"mfdate","class":"App\\Models\\ScopeEntity"} {"uid":"6411fa0"}
+[2019-07-16T09:11:38.263194+02:00] app.INFO: Property {property} does not exist in {class} {"property":"status","class":"App\\Models\\ScopeEntity"} {"uid":"6411fa0"}
+[2019-07-16T09:11:38.292130+02:00] app.INFO: App\Action\ScopeAction:GetAllScopes [] {"uid":"0918d56"}
+[2019-07-16T09:11:43.233409+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"87f2b91"}
+[2019-07-16T09:11:43.234521+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"87f2b91"}
+[2019-07-16T09:11:45.295789+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"69f5e47"}
+[2019-07-16T09:11:45.298060+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"69f5e47"}
+[2019-07-16T09:11:50.015620+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"7b93ef2"}
+[2019-07-16T09:11:50.017209+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"7b93ef2"}
+[2019-07-16T09:11:51.668802+02:00] app.INFO: App\Action\ScopeAction:GetAllScopes [] {"uid":"ba01ee4"}
+[2019-07-16T09:11:56.083948+02:00] app.INFO: App\Action\UserAction:addScope [] {"uid":"4778549"}
+[2019-07-16T09:11:58.168241+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"8b40944"}
+[2019-07-16T09:11:58.169169+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"8b40944"}
+[2019-10-24T14:45:45.716433+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"afe2298"}
+[2019-10-24T14:45:45.724446+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"afe2298"}
+[2019-10-24T14:45:51.933386+02:00] app.INFO: App\Action\ScopeAction:GetAllScopes [] {"uid":"154e066"}
+[2019-10-24T14:46:00.494717+02:00] app.INFO: App\Action\ScopeAction:GetAllScopes [] {"uid":"ed466b8"}
+[2019-10-24T14:46:00.827108+02:00] app.INFO: App\Action\ScopeAction:AddScope [] {"uid":"1789990"}
+[2019-10-24T14:46:00.828181+02:00] app.INFO: App\Repository\ScopeRepository:AddScope [] {"uid":"1789990"}
+[2019-10-24T14:46:00.832663+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"id","class":"App\\Models\\ScopeEntity"} {"uid":"1789990"}
+[2019-10-24T14:46:00.832750+02:00] app.INFO: Property {property} does not exist in {class} {"property":"iid","class":"App\\Models\\ScopeEntity"} {"uid":"1789990"}
+[2019-10-24T14:46:00.832784+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"uuid","class":"App\\Models\\ScopeEntity"} {"uid":"1789990"}
+[2019-10-24T14:46:00.832811+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"active","class":"App\\Models\\ScopeEntity"} {"uid":"1789990"}
+[2019-10-24T14:46:00.832837+02:00] app.INFO: Property {property} does not exist in {class} {"property":"deleted","class":"App\\Models\\ScopeEntity"} {"uid":"1789990"}
+[2019-10-24T14:46:00.832861+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"crdate","class":"App\\Models\\ScopeEntity"} {"uid":"1789990"}
+[2019-10-24T14:46:00.832884+02:00] app.INFO: Property {property} has no public setter method in {class} {"property":"mfdate","class":"App\\Models\\ScopeEntity"} {"uid":"1789990"}
+[2019-10-24T14:46:00.832908+02:00] app.INFO: Property {property} does not exist in {class} {"property":"status","class":"App\\Models\\ScopeEntity"} {"uid":"1789990"}
+[2019-10-24T14:46:05.232119+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"9ba765a"}
+[2019-10-24T14:46:05.233234+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"9ba765a"}
+[2019-10-24T14:46:20.563208+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"b3ccb47"}
+[2019-10-24T14:46:20.564165+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"b3ccb47"}
+[2019-10-24T14:46:23.123795+02:00] app.INFO: App\Action\ScopeAction:GetAllScopes [] {"uid":"12015cd"}
+[2019-10-24T14:46:26.452781+02:00] app.INFO: App\Action\UserAction:addScope [] {"uid":"f3748fb"}
+[2019-10-24T14:46:33.063935+02:00] app.INFO: App\Action\UserAction:getAllUsers [] {"uid":"f0a60f9"}
+[2019-10-24T14:46:33.065052+02:00] app.INFO: App\Repository\UserRepository:getAllUsers [] {"uid":"f0a60f9"}

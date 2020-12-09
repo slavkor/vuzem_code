@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_history_hire_001" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="410bcd2f-1b4b-4199-9463-188db294df6e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "company",
+    "expression" : "company"
+  }, {
+    "name" : "from",
+    "expression" : "from"
+  }, {
+    "name" : "to",
+    "expression" : "to"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "api.ismvuzem.si/rpt/employees/6281400b-2aa1-45e6-9249-1e8fc99191c4/hirehistory?token=54b9a6fd6b5c80e975d3a77e5d29d154b6067e3ec8d36eed266c4902abfadc60c0b954551a853098"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="company" class="java.lang.String"/>
+	<field name="from" class="java.lang.String"/>
+	<field name="to" class="java.lang.String"/>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="185" y="0" width="185" height="17" uuid="f6bd73e5-6e86-4878-8d2a-19009f420a06">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<text><![CDATA[Zaposlen od]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="185" height="17" uuid="892a7e37-dd33-4ce4-8481-e87221e05ba2">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<text><![CDATA[Zaposlen do]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="17" uuid="6d9accae-8c2f-4aff-bfc0-69a23c499483">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<text><![CDATA[Podjetje]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<textField>
+				<reportElement x="0" y="0" width="185" height="17" uuid="6e1e645c-fa05-4003-8b2b-4e1f7e551804">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{company}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="17" uuid="bcbc8aac-9ce3-4fdc-96c5-219764526b91">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{from}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="17" uuid="e7b70425-fe1d-4724-a15c-8128b7ca7fbf">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{to}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

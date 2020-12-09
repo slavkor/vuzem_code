@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_list_018c" pageWidth="187" pageHeight="842" columnWidth="187" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c0318d9d-eb3c-4b50-8524-cafdf11222a4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM.xml"/>
+	<parameter name="url" class="java.lang.String"/>
+	<parameter name="token" class="java.lang.String"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "sitename",
+    "expression" : "sitename"
+  }, {
+    "name" : "lastname",
+    "expression" : "lastname"
+  }, {
+    "name" : "name",
+    "expression" : "name"
+  }, {
+    "name" : "departtime",
+    "expression" : "departtime"
+  }, {
+    "name" : "color",
+    "expression" : "color"
+  } ],
+  "options" : {
+    "contentType" : "application/xml",
+    "rootPath" : "",
+    "baseUrl" : "api.ismvuzem.si/rpt/departure/listpladed?token=6373f9f3ebebe5bc4a40af1a9191965bbfd3cabfa7d4ccb50496a70db87b82b46a86f41f21c7c847"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="sitename" class="java.lang.String"/>
+	<field name="lastname" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="departtime" class="java.lang.String"/>
+	<field name="color" class="java.lang.String"/>
+	<sortField name="sitename"/>
+	<sortField name="departtime"/>
+	<variable name="lastname1" class="java.lang.Integer" resetType="Group" resetGroup="Groupsite" calculation="Count">
+		<variableExpression><![CDATA[$F{lastname}]]></variableExpression>
+	</variable>
+	<group name="Groupsite">
+		<groupExpression><![CDATA[$F{sitename}]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				<textField>
+					<reportElement mode="Opaque" x="0" y="0" width="187" height="14" backcolor="#D9D9D9" uuid="84f919fd-d4ce-443a-bfa6-e8b78caf567f">
+						<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					</reportElement>
+					<textElement>
+						<font fontName="DejaVu Sans"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sitename}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="15">
+				<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				<textField>
+					<reportElement x="0" y="0" width="187" height="14" uuid="522bd65a-2aaf-4958-998e-5ca14bd0b8dc">
+						<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font fontName="DejaVu Sans" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{lastname1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Groupdeparttime">
+		<groupExpression><![CDATA[$F{departtime}]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				<textField pattern="dd.MM.yyyy HH:mm">
+					<reportElement x="0" y="0" width="187" height="14" uuid="a9700925-c289-4e04-9096-5d4d4d47f39b"/>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMddHHmmss").parse($F{departtime})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="93" height="14" uuid="f8781525-9a86-4730-98ea-a37f1fa7d7fa">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lastname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="0" width="94" height="14" uuid="84f957f5-7816-4d14-850e-b4adf41ed317">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

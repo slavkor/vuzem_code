@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="Ism.Employees.Views.EmployeeEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ism.Employees.Views"
+             xmlns:localrgn="clr-namespace:Ism.Employees"
+             xmlns:inf="clr-namespace:Ism.Infrastructure;assembly=Ism.Infrastructure"
+             xmlns:converters="clr-namespace:Ism.Infrastructure.Converters;assembly=Ism.Infrastructure"
+             xmlns:ui="clr-namespace:Ism.Infrastructure.Ui;assembly=Ism.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"    
+             xmlns:ctrl="clr-namespace:Ism.Controls;assembly=Ism.Controls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             prism:ViewModelLocator.AutoWireViewModel="True"    
+             Style="{StaticResource ResourceKey=UcStyle}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseButtonStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Ism.Infrastructure;component/Resources/BaseTextBoxStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="WS" TargetType="{x:Type Window}" BasedOn="{StaticResource CustomWindowStyle}">
+                <Setter Property="MaxWidth" Value="400"></Setter>
+                <Setter Property="MaxHeight" Value="400"></Setter>
+            </Style>
+            <system:Boolean x:Key="True">True</system:Boolean>
+            <system:Boolean x:Key="False">False</system:Boolean>
+            <converters:EnumBooleanConverter x:Key="EnumBooleanConverter"></converters:EnumBooleanConverter>
+            <converters:SecurityScopeToVisibilityConverter x:Key="SecurityToVisbility"></converters:SecurityScopeToVisibilityConverter>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <i:Interaction.Triggers>
+            <prism:InteractionRequestTrigger SourceObject="{Binding EmployeeChangeEmployerInteractionRequest , Mode=OneWay}">
+                <prism:PopupWindowAction IsModal="True" WindowStartupLocation="CenterOwner" WindowStyle="{StaticResource WS}">
+                    <prism:PopupWindowAction.WindowContent>
+                        <local:ChangeEmployer/>
+                    </prism:PopupWindowAction.WindowContent>
+                </prism:PopupWindowAction>
+            </prism:InteractionRequestTrigger>
+        </i:Interaction.Triggers>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid  Grid.Row="0" Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+        
+            <ctrl:LayoutGroup Grid.Row="0" Grid.Column="0">
+
+                <ctrl:LabelledTextBox Label="Šifra" Text="{Binding Employee.Iid, Mode=TwoWay}" IsEnabled="False" ui:FocusAdvancement.AdvancesByKey="True" ></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Ime" Text="{Binding Employee.Name,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Priimek" Text="{Binding Employee.LastName,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Nadimek" Text="{Binding Employee.NickName,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Naziv" Text="{Binding Employee.Position,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Državljanstvo" Text="{Binding Employee.Nationality,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabeledDatePicker Label="Datum rojstva" DateValue="{Binding Employee.BirthDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,  ValidatesOnDataErrors=True, TargetNullValue={x:Static system:DateTime.Now}}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabeledDatePicker>
+                <ctrl:LabelledTextBox Label="Kraj rojstva" Text="{Binding Employee.BirthPlace,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Emšo" Text="{Binding Employee.Emso, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Davčna številka" Text="{Binding Employee.TaxNumber,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Številka osebnega dokumenta" Text="{Binding Employee.PersonalIdNumber,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Številka zavarovanja" Text="{Binding Employee.InsuranceNumber,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Iban" Text="{Binding Employee.Iban, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True" ></ctrl:LabelledTextBox>
+                <ctrl:LabelledTextBox Label="Email" Text="{Binding Employee.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True"></ctrl:LabelledTextBox>
+                <ctrl:LabeledComboBox LabelContent="Zakonski stan" ItemsSource="{Binding MartialStatuses, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedMartialStatus, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True"></ctrl:LabeledComboBox>
+                <ctrl:LabelledTextBox Label="Uporabnik" Text="{Binding Employee.UserName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" ui:FocusAdvancement.AdvancesByKey="True" Visibility="{Binding Source={x:Null}, Converter={StaticResource ResourceKey=SecurityToVisbility}, ConverterParameter=admin, Mode=OneWay}"></ctrl:LabelledTextBox>
+            </ctrl:LayoutGroup>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DockPanel LastChildFill="True" Grid.Column="0" >
+                    <Label DockPanel.Dock="Left">Jeziki</Label>
+                    <!--<telerik:RadListBox Name="langList" ItemsSource="{Binding Languages}" Margin="10" SelectionMode="Multiple" DockPanel.Dock="Left" Loaded="langList_Loaded">
+                        <telerik:RadListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Margin="2" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=telerik:RadListBoxItem}, Mode=TwoWay}" />
+                                    <TextBlock Text="{Binding Lang}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </telerik:RadListBox.ItemTemplate>
+                    </telerik:RadListBox>-->
+
+                    <!--<xctk:CheckListBox x:Name="lngList" DockPanel.Dock="Left"
+                                   DisplayMemberPath="Lang"
+                                   ItemsSource="{Binding Languages}"
+                                   SelectedMemberPath="IsSelected"
+                                   SelectedItemsOverride="{Binding SpokenLanguages}"
+                                   Command="{Binding SpokenLanguageChangeCommand}">
+                    </xctk:CheckListBox>-->
+                </DockPanel>
+
+                <DockPanel LastChildFill="True" Grid.Column="1" Height="30" >
+                    <Label DockPanel.Dock="Left">Delovno mesto</Label>
+                    <telerik:RadComboBox ItemsSource="{Binding WorkPlaces, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="WorkPlaceName" SelectedItem="{Binding SelectedWorkPlace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></telerik:RadComboBox>
+                </DockPanel>
+
+                <DockPanel LastChildFill="True" Grid.Column="2" Margin="1" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static localrgn:RegionNames.ExternalEmployerRegion}"></ContentControl>
+                </DockPanel>
+            </Grid>
+            
+
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" LastChildFill="False">
+                    <Button DockPanel.Dock="Left" Content="Delodajalec" Command="{Binding ChangeEmployerCommand}" Visibility="{Binding Source={x:Null}, Converter={StaticResource ResourceKey=SecurityToVisbility}, ConverterParameter=employee.employer, Mode=OneWay}"></Button>
+                </DockPanel>
+                <Border Grid.Row="1">
+                    <Image  Grid.Row="3" Source="{Binding EmployeeImagePath}" Stretch="Uniform"/>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+
+            <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static localrgn:RegionNames.DocumentsRegion}"></ContentControl>
+
+
+            <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static localrgn:RegionNames.AddressRegion}"></ContentControl>
+
+
+            <ContentControl Grid.Row="2" prism:RegionManager.RegionName="{x:Static localrgn:RegionNames.ContactsRegion}"></ContentControl>
+
+        </Grid>
+
+        <DockPanel Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="2" LastChildFill="False">
+            <Button DockPanel.Dock="Left" Content="Prekliči" Command="{Binding CancelCommand}" />
+            <Button DockPanel.Dock="Right" Content="Shrani" Command="{Binding SaveCommand}" CommandParameter="{StaticResource True}"></Button>
+        </DockPanel>
+    </Grid>
+</UserControl>

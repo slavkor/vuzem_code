@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employee_history_work_001" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f27f16a3-69d2-41f7-9b6c-12bba8f18693">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ISM"/>
+	<queryString language="WebServiceQuery">
+		<![CDATA[{
+  "getparameters" : { },
+  "fields" : [ {
+    "name" : "destination",
+    "expression" : "destination"
+  }, {
+    "name" : "from",
+    "expression" : "from"
+  }, {
+    "name" : "to",
+    "expression" : "to"
+  } ],
+  "options" : {
+    "contentType" : "application/json",
+    "rootPath" : "",
+    "baseUrl" : "api.ismvuzem.si/rpt/employees/6281400b-2aa1-45e6-9249-1e8fc99191c4/workhistory?token=54b9a6fd6b5c80e975d3a77e5d29d154b6067e3ec8d36eed266c4902abfadc60c0b954551a853098"
+  },
+  "headersMap" : { },
+  "queryData" : "",
+  "GETParameters" : { }
+}]]>
+	</queryString>
+	<field name="destination" class="java.lang.String"/>
+	<field name="from" class="java.lang.String"/>
+	<field name="to" class="java.lang.String"/>
+	<columnHeader>
+		<band height="17">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="0" width="141" height="17" backcolor="#EDEDED" uuid="842e5800-012d-4b78-b691-1aaf7932db73">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NA LOKACIJI DO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="185" height="17" backcolor="#EDEDED" uuid="23e8e04f-8d5e-4210-a668-e84943af08b5">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOKACIJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="0" width="141" height="17" backcolor="#EDEDED" uuid="abd5252a-38b9-4438-babf-04e07ae5c1da">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NA LOKACIJI OD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="17" uuid="e4eae0d2-ab58-4521-8750-7416cf052606">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{destination}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd.MM.yyyy">
+				<reportElement x="185" y="0" width="141" height="17" uuid="bcbc8aac-9ce3-4fdc-96c5-219764526b91">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse($F{from})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd.MM.yyyy">
+				<reportElement x="370" y="0" width="141" height="17" uuid="e7b70425-fe1d-4724-a15c-8128b7ca7fbf">
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse($F{to})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
